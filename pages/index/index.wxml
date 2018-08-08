@@ -1,0 +1,17 @@
+<!--pages/index/index.wxml-->
+<text>这里是首页</text>
+<view class="write">
+  <navigator url="../write/write" open-type="navigate" class="uploader-text">
+    <text>写信</text>
+  </navigator>
+</view>
+<view class="receivedMail">
+  <navigator url="../mailList/mailList" open-type="navigate" class="uploader-text">
+    <text>收件箱</text>
+  </navigator>
+</view>
+<view class="sendedMail">
+  <navigator url="../mailList/mailList" open-type="navigate" class="uploader-text">
+    <text>发件箱</text>
+  </navigator>
+</view>

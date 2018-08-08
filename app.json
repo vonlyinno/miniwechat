@@ -1,0 +1,10 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/register/register",
+    "pages/write/write",
+    "pages/mailList/mailList",
+    "pages/mail/mail",
+    "pages/mailState/mailState"
+  ]
+}
