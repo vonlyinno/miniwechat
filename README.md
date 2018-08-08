@@ -1,7 +1,7 @@
 # miniwechat
 test mini program
 
-##界面对应
+## 界面对应
 
 1. register 绑定邮箱界面
 2. index 主界面
