@@ -9,3 +9,5 @@ test mini program
 4. mailList 收件箱、发件箱界面
 5. mail 查看已送达邮件内容界面
 6. mailState 查看正在配送邮件界面
+
+## 任务分工 test git
