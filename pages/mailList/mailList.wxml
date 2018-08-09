@@ -1,2 +1,33 @@
-<!--pages/mailList/mailList.wxml-->
-<text>pages/mailList/mailList.wxml</text>
+<view class="page maillist_page">
+  <wux-refresher id="wux-refresher" refreshingText="pick新邮件" bind:pulling="onPulling" bind:refresh="onRefresh">
+    <view class="weui-loadmore weui-loadmore_line" wx:if="{{list.length}}">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+    </view>
+    <view wx:if="{{!list.length}}" class="card_list">
+      <wux-wing-blank size="default">
+        <view class="weui-panel weui-panel_access box-bordered">
+          <view class="weui-panel__bd">
+            <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+              <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                <image class="image-circle weui-media-box__thumb" src="https://wx1.sinaimg.cn/mw690/96a8340fgy1fu2ax6bpsfj20j60e8whb.jpg" />
+              </view>
+              <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                <view class="weui-media-box__title">To: Dear xxx</view>
+                <view class="weui-media-box__desc">from 2018年8月7日</view>
+              </view>
+            </navigator>
+          </view>
+          <view class="weui-panel__ft">
+            <navigator url="../mailState/mailState" open-type="navigate" class="uploader-text">
+              <view class="weui-cell weui-cell_access weui-cell_link">
+                <view class="weui-cell__bd">瞧一瞧信到哪里啦</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+              </view>
+            </navigator>
+          </view>
+        </view>
+      </wux-wing-blank>
+    </view>
+  </wux-refresher>
+  <wux-toast id="wux-toast" />
+</view>

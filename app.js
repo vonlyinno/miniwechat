@@ -1,3 +1,4 @@
+
 App({
   data:{
     //getApp().data.openid 可以获取全局的openid

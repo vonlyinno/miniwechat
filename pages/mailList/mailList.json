@@ -1,1 +1,9 @@
-{}
+{
+  "navigationBarTitleText": "收件箱",
+  "usingComponents": {
+      "wux-refresher": "../../components/refresher/index",
+      "wux-wing-blank": "../../components/wing-blank/index",
+      "wux-toast": "../../components/toast/index"
+      
+  }
+}

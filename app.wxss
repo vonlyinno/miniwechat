@@ -1,0 +1,5 @@
+@import './assets/style/weui.wxss';
+
+.image-circle {
+  border-radius: 50%;
+}
