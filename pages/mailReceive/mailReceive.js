@@ -30,7 +30,7 @@ Page({
         url
       }
     })
-    let list = await getMailList()
+    let list = await this.getMailList()
     if(list) {
       this.setData({
         list

@@ -3,8 +3,8 @@
     "pages/index/index",
     "pages/register/register",
     "pages/write/write",
-    "pages/mailList/mailList",
+    "pages/mailReceive/mailReceive",
     "pages/mail/mail",
-    "pages/mailState/mailState"
+    "pages/mailSend/mailSend"
   ]
 }

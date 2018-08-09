@@ -6,12 +6,12 @@
   </navigator>
 </view>
 <view class="receivedMail">
-  <navigator url="../mailList/mailList" open-type="navigate" class="uploader-text">
+  <navigator url="../mailReceive/mailReceive" open-type="navigate" class="uploader-text">
     <text>收件箱</text>
   </navigator>
 </view>
 <view class="sendedMail">
-  <navigator url="../mailList/mailList" open-type="navigate" class="uploader-text">
+  <navigator url="../mailSend/mailSend" open-type="navigate" class="uploader-text">
     <text>发件箱</text>
   </navigator>
 </view>

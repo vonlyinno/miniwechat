@@ -1,0 +1,61 @@
+.page {
+  height: 100%;
+  box-sizing: border-box;
+}
+scroll-view {
+  height: calc(100% - 120rpx);
+  margin: 60rpx 0;
+  box-sizing: border-box;
+  white-space:nowrap;
+}
+.mailCard {
+  width: 80%;
+  height: 100%;
+  margin: 0 30rpx;
+  border-radius: 20rpx;
+  background-color: #fff;
+  border: 2rpx solid #D9D9D9;
+  box-sizing: border-box;
+  font-size: 32rpx;
+  color: darkgray;
+  font-weight: 400;
+  position: relative;
+}
+.scroll-view-item{
+  display: inline-block;
+  vertical-align: top;
+}
+.mail_poster {
+  margin: 100rpx auto 20rpx auto;
+}
+.mail_poster image {
+  width: 400rpx;
+  height: 400rpx;
+}
+.mail_status {
+  font-weight: bold;
+  font-size: 50rpx;
+  color: dimgray;
+}
+.mail_mood {
+  margin: 50rpx auto;
+  font-weight: 400;
+  font-size: 26rpx;
+}
+.mail_mood image, .mail_info_time image {
+  width: 50rpx;
+  height: 50rpx;
+  vertical-align: middle;
+}
+.mail_info_to text{
+  color: #000;
+}
+.mail_info {
+  padding: 0 15rpx;
+  position: absolute;
+  bottom: 5rpx;
+  width: 100%;
+}
+.mail_info .wux-tag{
+  margin-top: 26rpx;
+}

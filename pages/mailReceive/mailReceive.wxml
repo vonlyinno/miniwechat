@@ -1,0 +1,30 @@
+<view class="page mailreceive_page">
+  <view class="user_info">
+    <view class="user_avator  text-center">
+      <image class="image-circle" src="https://wx1.sinaimg.cn/mw690/96a8340fgy1fu2ax6bpsfj20j60e8whb.jpg"></image>
+    </view>
+    <view class="user_name text-center">何娇羞</view>
+    <view class="user_total text-center">共收到 2 封邮件</view>
+  </view>
+  <view class="mail_list">
+    <view class="mail_card">
+      <view class="mail_cover">
+        <image class="image-full" mode="aspectFill" src="https://wx3.sinaimg.cn/mw690/71f4b8bcly1fu3vucxvlhj20wu0wujsu.jpg"></image>
+      </view>
+      <view class="mail_info">
+        <wux-row>
+            <wux-col span="6">
+                <view class="mail_info_to"><text> FROM</text> hetutu</view>
+                <view class="mail_info_time">
+                  <image src="../../assets/image/clock.png"></image> 
+                  <text >2018.08.06</text>
+                </view>
+            </wux-col>
+            <wux-col span="2" offset="4">
+                 <image class="mail_poster image-circle" src="https://wx1.sinaimg.cn/mw690/96a8340fgy1fu2ax6bpsfj20j60e8whb.jpg"></image>
+            </wux-col>
+        </wux-row>
+      </view>
+    </view>
+  </view>
+</view>

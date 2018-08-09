@@ -1,0 +1,45 @@
+page {
+  margin: 0;
+  height: 100%;
+}
+.user_info {
+  border-bottom: 2rpx solid #D9D9D9;
+  margin-bottom: 50rpx;
+}
+.user_avator image{
+  width: 150rpx;
+  height: 150rpx;
+  
+}
+.user_avator{
+  margin: 50rpx auto 20rpx auto;
+}
+.user_total {
+  font-size: 26rpx;
+  margin: 20rpx auto;
+}
+.mail_card {
+  border-top: 2rpx solid #D9D9D9;
+  border-bottom: 2rpx solid #D9D9D9;
+}
+.mail_cover image{
+  height: 300rpx;
+}
+.mail_info_to text{
+  color: #000;
+}
+.mail_info {
+  color: darkgray;
+  padding: 20rpx 15rpx;
+  border-top: 2rpx solid #D9D9D9;
+  background-color: #fff;
+}
+.mail_info_time image {
+  width: 50rpx;
+  height: 50rpx;
+  vertical-align: middle;
+}
+.mail_poster {
+  width: 100rpx;
+  height: 100rpx;
+}

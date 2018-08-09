@@ -1,0 +1,33 @@
+<view  class="page mailsend_page">
+<scroll-view scroll-x>
+  <view class="mailCard mailCard_send scroll-view-item">
+    <view class="mail_poster text-center"><image class="image-circle " src="https://wx1.sinaimg.cn/mw690/96a8340fgy1fu2ax6bpsfj20j60e8whb.jpg"></image></view>
+    <view class="mail_status text-center"><text >寄送中</text></view>
+   <view class="mail_poster_status text-center">
+      信使今天在北京迷路啦
+    </view>
+    <view class="mail_mood text-center">
+      <!-- <text>emmmmm, 今天心情还不错呢。</text> -->
+      <text>今天还没有添加心情</text>
+      <image src="../../assets/image/edit.png"></image>
+    </view>
+    <view class="mail_info">
+       <wux-row>
+            <wux-col span="3">
+                <view class="mail_info_to"><text> TO</text> hetutu</view>
+                <view class="mail_info_time">
+                  <image src="../../assets/image/clock.png"></image> 
+                  <text >2018.08.06</text>
+                </view>
+            </wux-col>
+            <wux-col span="2" offset="7">
+                <wux-tag color="green">月达</wux-tag>
+            </wux-col>
+        </wux-row>
+    </view>
+  </view>
+  <view class="mailCard mailCard_send scroll-view-item"></view>
+  <view class="mailCard mailCard_send scroll-view-item"></view>
+  <view class="mailCard mailCard_send scroll-view-item"></view>
+</scroll-view>
+</view>
