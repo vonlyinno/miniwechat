@@ -2,7 +2,8 @@
   "navigationBarTitleText": "收件箱",
   "usingComponents": {
     "wux-row": "../../components/row/index",
-    "wux-col": "../../components/col/index"
+    "wux-col": "../../components/col/index",
+    "wux-toast": "../../components/toast/index"
       
   }
 }
