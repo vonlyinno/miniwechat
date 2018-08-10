@@ -1,11 +1,11 @@
-// pages/index/index.js
+// pages/mailState/mailState.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  text:"这里是初始文字"
+  
   },
 
   /**
@@ -26,9 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // let url ="http://pic.58pic.com/58pic/15/67/74/31658PIC94H_1024.jpg";
-    // this.setData({src:url});
-    // console.log("页面显示")
+  
   },
 
   /**
@@ -64,25 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
-  refreshText:function(){
-    console.log('按下按钮')
-    //test openid
-    // console.log(getApp().data.openid);
-    let _this = this;
-    let testUrl = 'http://193.112.91.187/manji/public/index.php/index/index/index ';
-    const requestTask = wx.request({
-      url: testUrl, //仅为示例，并非真实的接口地址
-      data: {
-     
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        // console.log(res)
-        _this.setData({text:res.data})
-      }
-    })
   }
 })

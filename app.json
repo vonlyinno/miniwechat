@@ -1,10 +1,18 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/register/register",
+    "pages/index/index",
     "pages/write/write",
-    "pages/mailReceive/mailReceive",
+    "pages/mailList/mailList",
     "pages/mail/mail",
-    "pages/mailSend/mailSend"
-  ]
+    "pages/mailState/mailState",
+    "pages/mailSend/mailSend",
+    "pages/mailReceive/mailReceive"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "小程序名字",
+    "navigationBarBackgroundColor": "#f8f8f8",
+    "backgroundColor": "#f8f8f8"
+  }
 }

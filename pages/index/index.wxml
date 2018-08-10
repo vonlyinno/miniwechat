@@ -1,5 +1,4 @@
-<!--pages/index/index.wxml-->
-<text>这里是首页</text>
+
 <view class="write">
   <navigator url="../write/write" open-type="navigate" class="uploader-text">
     <text>写信</text>
@@ -13,5 +12,10 @@
 <view class="sendedMail">
   <navigator url="../mailSend/mailSend" open-type="navigate" class="uploader-text">
     <text>发件箱</text>
+  </navigator>
+</view>
+<view class="register" hidden='true'>
+  <navigator url="../register/register" open-type="navigate" class="uploader-text">
+    <text>注册</text>
   </navigator>
 </view>

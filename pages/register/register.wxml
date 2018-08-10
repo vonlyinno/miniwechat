@@ -1,2 +1,35 @@
-<!--pages/register/register.wxml-->
-<text>pages/register/register.wxml</text>
+<view class="page">
+  <view class="weui-loadmore" hidden="{{loginHidden}}">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在登陆</view>
+  </view>
+  <view class="weui-btn-area" hidden="{{authHidden}}">
+    <button class="weui-btn" type="primary" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">点击授权</button>
+
+  </view>
+  <view id='checkCode' hidden='{{checkCodeViewHidden}}'>
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+      <view class="weui-cell__hd">
+        <view class="weui-label">邮箱</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入邮箱地址" bindinput='emailInput' />
+      </view>
+      <view class="weui-cell__ft">
+        <view class="weui-vcode-btn" bindtap='generateCheckCodeByEmail'>{{getCheckCodePrompt}}</view>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+      <view class="weui-cell__hd">
+        <view class="weui-label">验证码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入验证码" bindinput='checkCodeInput'/>
+      </view>
+
+    </view>
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="bindEmail">确定</button>
+    </view>
+  </view>
+</view>
