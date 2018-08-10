@@ -3,16 +3,27 @@
 .image-circle {
   border-radius: 50%;
 }
+.image-bordered{
+  border: 2rpx solid #D9D9D9;
+}
 .image-full {
   width: 100%;
   display: block;
 }
 page{
-  height: 100%;
+  width: 100%;
+  min-height: 100%;
   margin: 0;
   font-weight: 400;
   font-size: 32rpx;
 }
 .text-center {
   text-align: center;
+}
+.weui-loadmore__tips_in-line {
+  background-color: transparent;
+  color: #333;
+}
+.weui-loadmore_line {
+  border: none;
 }

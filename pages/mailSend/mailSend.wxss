@@ -2,15 +2,24 @@
   height: 100%;
   box-sizing: border-box;
 }
+.mailsend_nodata {
+  padding-top: 400rpx;
+}
+.weui-loadmore_line {
+  margin-top: 0;
+}
+.weui-loadmore {
+  margin-top: 0;
+}
 scroll-view {
-  height: calc(100% - 120rpx);
-  margin: 60rpx 0;
+  height: 100%;
+  padding: 60rpx 0;
   box-sizing: border-box;
   white-space:nowrap;
 }
 .mailCard {
   width: 80%;
-  height: 100%;
+  height: calc(100% - 120rpx);
   margin: 0 30rpx;
   border-radius: 20rpx;
   background-color: #fff;
@@ -31,6 +40,7 @@ scroll-view {
 .mail_poster image {
   width: 400rpx;
   height: 400rpx;
+  border: 2rpx solid #D9D9D9;
 }
 .mail_status {
   font-weight: bold;
@@ -58,4 +68,33 @@ scroll-view {
 }
 .mail_info .wux-tag{
   margin-top: 26rpx;
+}
+.modal {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 1001;
+}
+.modal textarea {
+  width: 100%;
+  padding: 20rpx;
+  background-color: #fff;
+}
+.modal button {
+  border-radius: 0;
+}
+.wux-button--positive {
+  border-color: transparent;
+  background-color: #387ef5;
+  color: #fff;
+}
+.wux-button--positive:active{
+  background-color: #0c60ee;
+  color: inheart;
+}
+.modal_content {
+  width:100%;
+  z-index:1001;
+  position:absolute;
+  bottom:0;
 }

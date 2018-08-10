@@ -2,6 +2,10 @@
   "usingComponents": {
     "wux-row": "../../components/row/index",
     "wux-col": "../../components/col/index",
-    "wux-tag": "../../components/tag/index"
+    "wux-tag": "../../components/tag/index",
+    "wux-button": "../../components/button/index",
+    "wux-toast": "../../components/toast/index",
+    "wux-animation-group": "../../components/animation-group/index",
+    "wux-backdrop": "../../components/backdrop/index"
   }
 }

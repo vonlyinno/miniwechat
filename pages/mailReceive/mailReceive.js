@@ -1,113 +1,66 @@
-// pages/mailList/mailList.js
-import {
-  $stopWuxRefresher,
-  $wuxToast
-} from '../../components/index'
+/*
+ * @Author: tinniehe 
+ * @Date: 2018-08-10 10:35:27 
+ * @Last Modified by: tinniehe
+ * @Last Modified time: 2018-08-10 11:22:23
+ */
+import { $wuxToast } from '../../components/index'
 import regeneratorRuntime from '../../libs/regenerator-runtime'
 
+const app = getApp()
+const GET_RECEIVE_MAIL_URL = "//193.112.91.187/manji/public/index.php/index/index/get_all_receive_mail"
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     list: [],
-    opt: {}
+    user: {
+      open_id: app.data.openid || '',
+      user_id: app.data.userid || '',
+      avator: app.data.avator || '',
+      nick_name: app.data.nick_name || 'who are you'
+    }
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   async onLoad (options) {
-    let url
-    if(options.type === 'send') {
-      url = ''
-    } else {
-      url = ''
-    }
-    this.setData({
-      opt: {
-        url
+    if(this.user_id) {
+      let opt = {
+        url: GET_RECEIVE_MAIL_URL,
+        data: {
+          user_id: this.user.user_id
+        }
       }
-    })
-    let list = await this.getMailList()
-    if(list) {
-      this.setData({
-        list
-      })
+      let list = await this.requestApi(opt)
+      if(list) {
+        //设置cover
+        list.map((item) => {
+
+        })
+        this.setData({
+          list
+        })
+      }
     }
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-  // 下拉刷新
-  onPulling() {
-    console.log('onPulling')
-  },
-  async onRefresh() {
-    console.log('onRefresh')
-    await this.getMailList()
-    $stopWuxRefresher()
-  },
-  getMailList () {
+  async requestApi (opt) {
     try {
-      // let list = await wx.request({
-      //   url: this.opt.url, //仅为示例，并非真实的接口地址
-      //   data: this.opt.args
-      // })
-      return list
+      let res = await wx.request(opt)
+      if(res.errno === 0){
+        return res.data
+      } else {
+        $wuxToast().show({
+          type: 'cancel',
+          duration: 1500,
+          color: '#fff',
+          text: '出错啦'
+        })
+      }
     } catch (err) {
       $wuxToast().show({
         type: 'cancel',
         duration: 1500,
         color: '#fff',
-        text: '获取失败'
+        text: '出错啦'
       })
     }
   }
