@@ -3,9 +3,9 @@
     <view class="weui-loadmore__tips weui-loadmore__tips_in-line">--- 暂无信件 ---</view>
     <wux-row>
       <wux-col span="6" offset="3">
-        <!-- <navigator url="../write/write"> -->
-          <wux-button block type="positive" bind:click="showAddMood">去写信</wux-button>
-        <!-- </navigator> -->
+        <navigator url="../write/write">
+          <wux-button block type="positive">去写信</wux-button>
+        </navigator>
       </wux-col>
     </wux-row>
   </view>

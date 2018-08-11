@@ -3,8 +3,13 @@
   width: 100%;
   height: 100%;
   background-color: whitesmoke;
-  background-repeat: repeat;
+  position: relative;
+}
+.mail_routine {
   padding: 30rpx 0;
+  background-color: whitesmoke;
+  background-repeat: repeat;
+  
 }
 .mail_hd view {
   font-weight: 400;
@@ -88,4 +93,54 @@
   display: inline-block;
   margin-top: 20rpx;
   width: 100rpx;
+}
+.mail_content {
+  padding: 30rpx 20rpx;
+  background-repeat: repeat;
+  font-size: 26rpx;
+  line-height: 55rpx;
+}
+.content_title {
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+.content_text, .content_image {
+  margin-bottom: 20rpx;
+  text-align: justify;
+  width: 100%;
+}
+.mail_wrapper{
+  min-height: 100%;
+  background-color: ivory;
+  position: 
+}
+.btn_back {
+  width: 80rpx;
+  height: 80rpx;
+  position: fixed;
+  right: 40rpx;
+  bottom: 40rpx;
+  box-shadow: 0 0 8rpx rgba(0, 0, 0, 0.14), 0 8rpx 16rpx rgba(0, 0, 0, 0.28);
+}
+@keyframes slidedown {
+  from {
+      transform: translateY(0);
+  }
+  to {
+      transform: translateY(100%);
+  }
+}
+.slidedown {
+  animation: slidedown 1s linear ;
+}
+.slideup {
+  animation: slideup 1s linear ;
+}
+@keyframes slideup {
+  from {
+      transform: translateY(100%);
+  }
+  to {
+      transform: translateY(0);
+  }
 }

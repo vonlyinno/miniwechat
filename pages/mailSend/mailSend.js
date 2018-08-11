@@ -2,7 +2,7 @@
  * @Author: tinniehe 
  * @Date: 2018-08-10 11:19:19 
  * @Last Modified by: tinniehe
- * @Last Modified time: 2018-08-10 19:40:09
+ * @Last Modified time: 2018-08-11 20:39:54
  */
 import {
   $wuxToast,
@@ -10,9 +10,8 @@ import {
 } from '../../components/index'
 import regeneratorRuntime from '../../libs/regenerator-runtime'
 
-const app = getApp()
 const GET_SEND_MAIL_URL = "//193.112.91.187/manji/public/index.php/index/index/get_all_send_email"
-const APPEND_MOOD_URL = "http://193.112.91.187/manji/public/index.php/index/index/append_mail"
+const APPEND_MOOD_URL = "//193.112.91.187/manji/public/index.php/index/index/append_mail"
 Page({
 
   /**
@@ -20,12 +19,7 @@ Page({
    */
   data: {
     list: [],
-    user: {
-      open_id: app.data.openid || '',
-      user_id: app.data.userid || '',
-      avator: app.data.avator || '',
-      nick_name: app.data.nick_name || 'who are you'
-    },
+    user: {},
     in: false,
     edit_mail_id: ''
   },
@@ -33,11 +27,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    if (this.user_id) {
+    const app = getApp()
+    this.setData({
+      user: {
+        open_id: app.data.openid || '',
+        user_id: app.data.userid || '',
+        avator: app.data.picUrl || '',
+        nick_name: app.data.nickName || 'who are you'
+      }
+    })
+    if (this.data.user.user_id) {
       let opt = {
         url: GET_SEND_MAIL_URL,
         data: {
-          user_id: this.user.user_id
+          user_id: this.data.user.user_id
         }
       }
       let data = await this.requestApi(opt)
@@ -61,7 +64,7 @@ Page({
   onReady() {
     this.$wuxBackdrop = $wuxBackdrop('#wux-backdrop', this)
   },
-  showAddMood(mail_id='', index='') {
+  showAddMood(mail_id = '', index = '') {
     this.setData({ in: true,
       edit_mail_id: mail_id,
       edit_mail_index: index
@@ -85,7 +88,10 @@ Page({
         type: 'cancel',
         duration: 1500,
         color: '#fff',
-        text: '出错啦'
+        text: '出错啦',
+        success () {
+          wx.navigateBack()
+        }
       })
     }
   },
@@ -121,7 +127,8 @@ Page({
     }
   },
   formReset(event) {
-    this.setData({ in: false })
+    this.setData({ in: false
+    })
     this.$wuxBackdrop.release()
   }
 })
