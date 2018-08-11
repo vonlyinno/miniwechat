@@ -5,30 +5,39 @@ Page({
    * 页面的初始数据
    */
   data: {
-  text:"这里是初始文字"
+  text:"这里是初始文字",
+  userid:undefined,
+  nickName:undefined,
+  picUrl:undefined,
+  redDot:null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    let app = getApp()
+    // console.log(app.data.nickName)
+    // console.log(app.data.picUrl)
+    this.data.nickName = app.data.nickName
+    this.data.picUrl = app.data.picUrl
+    this.data.userid = app.data.userid
+    this.setData({ username: app.data.nickName, picUrl: app.data.picUrl })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    this.checkReceivedMail()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // let url ="http://pic.58pic.com/58pic/15/67/74/31658PIC94H_1024.jpg";
-    // this.setData({src:url});
-    // console.log("页面显示")
+    
+    
   },
 
   /**
@@ -65,24 +74,9 @@ Page({
   onShareAppMessage: function () {
   
   },
-  refreshText:function(){
-    console.log('按下按钮')
-    //test openid
-    // console.log(getApp().data.openid);
-    let _this = this;
-    let testUrl = 'http://193.112.91.187/manji/public/index.php/index/index/index ';
-    const requestTask = wx.request({
-      url: testUrl, //仅为示例，并非真实的接口地址
-      data: {
-     
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        // console.log(res)
-        _this.setData({text:res.data})
-      }
-    })
+  //检查收件箱是否有新的未读邮件
+  checkReceivedMail:function(){
+    //请求收件箱，遍历，如果有未读的就加小红点
+    this.setData({redDot:'../../assets/image/redDot.png'})
   }
 })

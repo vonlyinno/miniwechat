@@ -1,4 +1,17 @@
-
+<view class="weui-panel weui-panel_access">
+  
+  <view class="weui-panel__bd">
+    <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+        <image class="weui-media-box__thumb" src="{{picUrl}}" />
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title">{{username}}</view>
+        
+      </view>
+    </view>
+  </view>
+</view>
 <view class="write">
   <navigator url="../write/write" open-type="navigate" class="uploader-text">
     <text>写信</text>
@@ -7,6 +20,7 @@
 <view class="receivedMail">
   <navigator url="../mailReceive/mailReceive" open-type="navigate" class="uploader-text">
     <text>收件箱</text>
+    <image style="width: 20px; height: 20px;" mode='scaleToFill' src='{{redDot}}'></image>
   </navigator>
 </view>
 <view class="sendedMail">

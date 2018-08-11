@@ -139,37 +139,37 @@ Page({
       let user_name = getApp().data.nickName;
       let user_img = getApp().data.picUrl;
       let _this = this;
-      wx.request({
-        url: 'http://193.112.91.187/manji/public/index.php/index/index/check_verification_code', //仅为示例，并非真实的接口地址
-        data: {
-          vuid:vuid,
-          email:email,
-          check_code:check_code,
-          user_name:user_name,
-          user_img:user_img
-        },
-        method:'POST',
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success: function (res) {
-          if(res.data.ret == 0){
-            _this.bindEmailSuccess()
-          }else{
-            _this.bindEmailFail();
-          }
-        },
-        fail: function (res) {
-          console.log("绑定邮箱网络失败")
-          _this.bindEmailFail()
+      // wx.request({
+      //   url: 'http://193.112.91.187/manji/public/index.php/index/index/check_verification_code', //仅为示例，并非真实的接口地址
+      //   data: {
+      //     vuid:vuid,
+      //     email:email,
+      //     check_code:check_code,
+      //     user_name:user_name,
+      //     user_img:user_img
+      //   },
+      //   method:'POST',
+      //   header: {
+      //     'content-type': 'application/json' // 默认值
+      //   },
+      //   success: function (res) {
+      //     if(res.data.ret == 0){
+      //       _this.bindEmailSuccess()
+      //     }else{
+      //       _this.bindEmailFail();
+      //     }
+      //   },
+      //   fail: function (res) {
+      //     console.log("绑定邮箱网络失败")
+      //     _this.bindEmailFail()
 
-        }
-      })
+      //   }
+      // })
       //todo 这个很坑啊，不能用回调控制消失？
       wx.showToast({
         title: '数据加载中',
         icon: 'loading',
-        duration: 2000
+        duration: 3000
       });
       // this.bindEmailFail()
       this.bindEmailSuccess()
@@ -235,25 +235,25 @@ Page({
     this.data.leftTime=time;
   },
   _generateCheckCodeByEmail(email){
-    wx.request({
-      url: 'http://193.112.91.187/manji/public/index.php/index/index/get_verification_code', //仅为示例，并非真实的接口地址
-      data: {
-        email:email
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function (res) {
-        if(res.data.ret ==0){
-          console.log("生产验证码成功")
-        }else{
-          console.log("生成验证码失败")
-        }
-      },
-      fail:function(res){
-        console.log("请求服务器生成验证码网络失败")
-      }
-    })
+    // wx.request({
+    //   url: 'http://193.112.91.187/manji/public/index.php/index/index/get_verification_code', //仅为示例，并非真实的接口地址
+    //   data: {
+    //     email:email
+    //   },
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success: function (res) {
+    //     if(res.data.ret ==0){
+    //       console.log("生产验证码成功")
+    //     }else{
+    //       console.log("生成验证码失败")
+    //     }
+    //   },
+    //   fail:function(res){
+    //     console.log("请求服务器生成验证码网络失败")
+    //   }
+    // })
   },
   //获取授权函数,获取授权后会获取用户名和头像url，并设置为全局变量
   //nickName 用户名
@@ -285,9 +285,11 @@ Page({
     console.log('todo，根据openid询问后台' + openid);
     let _this = this;
     //现在默认跳去主页，之后要注册成功才能跳过去
-    // this.loginSuccess();
+    this.loginSuccess();
+    this.getUserNameAndPic()
+    // this.gotoRegister(_this);
+    //之后要注释掉上面的代码，现在只是为了方便调试。下面的代码要取消注释
 
-    this.gotoRegister(_this);
     // wx.request({
     //   url: 'http://193.112.91.187/manji/public/index.php/index/index/is_registered', //仅为示例，并非真实的接口地址
     //   data: {
