@@ -78,6 +78,6 @@ Page({
   //检查收件箱是否有新的未读邮件
   checkReceivedMail:function(){
     //请求收件箱，遍历，如果有未读的就加小红点
-    this.setData({redDot:'../../assets/image/redDot.png'})
+    // this.setData({redDot:'../../assets/image/redDot.png'})
   }
 })

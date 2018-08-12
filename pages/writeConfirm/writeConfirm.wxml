@@ -4,48 +4,57 @@
   <view class="weui-media-box weui-media-box_small-appmsg">
     <view class="weui-cells weui-cells_in-small-appmsg">
       <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" hidden='true'>
-         <view class="weui-cell__hd">
+        <view class="weui-cell__hd">
           <image src="../../assets/image/recvName.png" class='icon' />
         </view>
-        <text class="weui-cell__hd" >对方昵称</text>
-       
+        <text class="weui-cell__hd">对方昵称</text>
+
         <view class="weui-cell__bd weui-cell_primary">
           <input class='input' bindinput='friendNameInput'></input>
         </view>
 
-      </view> <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-         <view class="weui-cell__hd">
+      </view>
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
           <image src="../../assets/image/recvAddr.png" class='icon' />
         </view>
         <text class="weui-cell__hd">收件邮箱</text>
-       
+
         <view class="weui-cell__bd weui-cell_primary">
           <input class='input' bindinput='recvAddrInput'></input>
         </view>
 
-      </view> <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-         <view class="weui-cell__hd">
+      </view>
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
           <image src="../../assets/image/recvRealAddr.png" class='icon' />
         </view>
         <text class="weui-cell__hd">真实地址</text>
-       
+
         <view class="weui-cell__bd weui-cell_primary">
-          <input class='input' bindinput='recvRealAddrInput'></input>
+          <view class="weui-cell weui-cell_select">
+           
+            <view class="weui-cell__bd">
+              <picker bindchange="bindCityChange" value="{{cityIndex}}" range="{{cities}}">
+                <view class="weui-select weui-select_in-select-after">{{cities[cityIndex]}}</view>
+              </picker>
+            </view>
+          </view>
         </view>
 
       </view>
     </view>
   </view>
   <view class='postman'>
-  <input type='text' value='选择信使' class='postmanChoose'></input>
-  <image class='postmanPic' src='{{postmanPic}}'>
-  </image>
-  <text class='postmanPrompt'>{{postmanPrompt}}</text>
-  <slider min='0' max='3' class='slider'></slider>
+    <input type='text' value='选择信使' class='postmanChoose'></input>
+    <image class='postmanPic' src='http://193.112.91.187/yoyou{{postmanPic}}'>
+    </image>
+    <text class='postmanPrompt'>{{postmanPrompt}}</text>
+    <slider min='{{sliderMin}}' max='{{sliderMax}}' class='slider' bindchange='sliderChanging'></slider>
   </view>
   <view class='submit'>
-  <button class='submitBtn' bindtap='commitMail'>确定发送</button>
-  <button class='cancelBtn' bindtap='cancelBtnTap'>取消</button>
-  
+    <button class='submitBtn' bindtap='commitMail'>确定发送</button>
+    <button class='cancelBtn' bindtap='cancelBtnTap'>取消</button>
+
   </view>
 </view>

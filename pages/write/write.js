@@ -175,21 +175,18 @@ Page({
       success: function(res) {
         var tempFilePaths = res.tempFilePaths;
 
-        blocks[index].value = tempFilePaths;
-        self.setData({
-          'blocks': blocks
-        })
-        console.log(res.tempFiles[0])
+        
+        // console.log(res.tempFiles[0])
         //self.uploadImage(tempFilePaths,index);
 
         helper.getBase64Image('workCanvas', res.tempFilePaths[0], function(data) {
           // console.log(data)
-          console.log('准备传图片啦啦啦啦啦啦')
+          // console.log('准备传图片啦啦啦啦啦啦')
           
           
           self.data.blocks[index].value = data;
           self.setData({
-            'blocks': blocks
+            'blocks': self.data.blocks
           })
         });
       }
@@ -232,7 +229,12 @@ Page({
       })
       return;
     }
-
+    if (!this.data.friendName || this.data.friendName.length<1){
+      wx.showToast({
+        title: '请输入对方昵称！',
+      })
+      return;
+    }
     // this.data.tags.map(function(n, i){
     //   if(n.actived){
     //     tags += n.id+'|';
@@ -249,7 +251,7 @@ Page({
       } else {
         contents.push({
           'type': n.type,
-          'url': n.value
+          'value': n.value
         })
       }
 
@@ -259,7 +261,7 @@ Page({
 
     getApp().data.content = form.content;
     getApp().data.friendName = this.data.friendName;
-    console.log(getApp().data.content);
+    // console.log(getApp().data.content);
     wx.navigateTo({
       url: '../writeConfirm/writeConfirm', //其实在这里传值比用全局变量好
     })
