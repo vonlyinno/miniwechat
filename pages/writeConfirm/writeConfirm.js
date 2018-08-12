@@ -109,9 +109,9 @@ Page({
       method:'POST',
       data:{data:{
         user_id:this.data.userid,
-        poster_id:this.data.poster_id || 0,
+        poster_id:this.data.poster_id || 1,
         friend_name:this.data.friendName,
-        friend_addr_id:this.data.recvRealAddr,
+        friend_addr_id:1,
         friend_email:this.data.recvAddr,
         content:this.data.content}
       },
