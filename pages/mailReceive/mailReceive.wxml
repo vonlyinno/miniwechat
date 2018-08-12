@@ -1,17 +1,18 @@
 <view class="page mailreceive_page">
   <view class="user_info">
+    <image class="image_header" src="../../assets/image/recv_header.png"></image>
     <view class="user_avator  text-center">
       <image class="image-circle" src="{{user.avator}}"></image>
     </view>
     <view class="user_name text-center">{{user.nick_name}}</view>
-    <view class="user_total text-center">共收到 {{list.length}} 封邮件</view>
+    <view class="user_total text-center">共收到 <text>{{list.length}}</text> 封邮件</view>
   </view>
   <view class="mail_list" wx:if="{{list.length}}">
     <navigator url="../mail/mail?mail_id={{item.mail_id}}" open-type="navigate" wx:for="{{list}}">
       <view class="mail_card">
-        <view class="mail_cover">
-          <image class="image-full" mode="aspectFill" src="https://wx3.sinaimg.cn/mw690/71f4b8bcly1fu3vucxvlhj20wu0wujsu.jpg"></image>
-        </view>
+          <image class="image_e_btm" mode="widthFix" src="../../assets/image/recv_e_btm.png"></image>
+          <image class="image_e_top" mode="widthFix" src="../../assets/image/recv_e_top.png"></image>        
+          <image class="mail_cover" src="https://wx3.sinaimg.cn/mw690/71f4b8bcly1fu3vucxvlhj20wu0wujsu.jpg"></image>
         <view class="mail_info">
           <wux-row>
             <wux-col span="6">
@@ -20,14 +21,15 @@
                 {{item.friend_name}}
               </view>
               <view class="mail_info_time">
-                <image src="../../assets/image/clock.png"></image>
+                <image src="../../assets/image/recv_clock.png"></image>
                 <text>{{item.create_time}}</text>
               </view>
             </wux-col>
-            <wux-col span="2" offset="4">
-              <image class="mail_poster image-circle" src="{{item.poster_url}}"></image>
-            </wux-col>
           </wux-row>
+        </view>
+        <view class="mail_poster text-center">
+          <image class=" image-circle" src="{{item.poster_url}}"></image>
+          <text>信使</text>
         </view>
       </view>
     </navigator>

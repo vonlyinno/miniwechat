@@ -16,11 +16,13 @@
   font-size: 24rpx;
   text-align: center;
 }
-.mail_logo {
+.mail_hd view.mail_logo {
   margin-bottom: 20rpx;
-}
-.mail_logo image{
-  width: 160rpx;
+  font-family: 'HanziPenSC-W5';
+  font-size: 66rpx;
+  color: rgba(0,0,0,0.60);
+  letter-spacing: 0;
+  text-align: center;
 }
 .mail_hd .mail_title {
   font-size: 36rpx;
@@ -95,6 +97,7 @@
   width: 100rpx;
 }
 .mail_content {
+  font-family: 'HanziPenSC-W3';
   padding: 30rpx 20rpx;
   background-repeat: repeat;
   font-size: 26rpx;
@@ -109,17 +112,19 @@
   text-align: justify;
   width: 100%;
 }
+.content_image image{
+  width: 100%;
+}
 .mail_wrapper{
   min-height: 100%;
-  background-color: ivory;
-  position: 
 }
 .btn_back {
   width: 80rpx;
   height: 80rpx;
-  position: fixed;
-  right: 40rpx;
+  position: sticky;
+  left: calc(100% - 120rpx);
   bottom: 40rpx;
+  background: #ddd;
   box-shadow: 0 0 8rpx rgba(0, 0, 0, 0.14), 0 8rpx 16rpx rgba(0, 0, 0, 0.28);
 }
 @keyframes slidedown {
