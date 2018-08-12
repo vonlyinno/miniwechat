@@ -109,7 +109,7 @@ Page({
       method:'POST',
       data:{data:{
         user_id:this.data.userid,
-        poster_id:this.data.poster_id || 1,
+        poster_id:this.data.poster_id || 4,
         friend_name:this.data.friendName,
         friend_addr_id:1,
         friend_email:this.data.recvAddr,
