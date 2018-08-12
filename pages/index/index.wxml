@@ -7,7 +7,10 @@
       </view>
       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
         <view class="weui-media-box__title">{{username}}</view>
-        
+ <view wx:if="{{username == undefined}}">       
+<button class="weui-btn" type="primary" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">点击授权获取头像及昵称</button>
+</view>
+
       </view>
     </view>
   </view>
@@ -38,8 +41,8 @@
     <text>编辑器</text>
   </navigator>
 </view>
-<view >
-  <navigator url="../writeConfirm/writeConfirm" open-type="navigate" class="uploader-text">
+<view hidden='true'>
+  <navigator  url="../writeConfirm/writeConfirm" open-type="navigate" class="uploader-text">
     <text>写信确认</text>
   </navigator>
 </view>

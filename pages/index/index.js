@@ -79,5 +79,25 @@ Page({
   checkReceivedMail:function(){
     //请求收件箱，遍历，如果有未读的就加小红点
     // this.setData({redDot:'../../assets/image/redDot.png'})
+  },
+  bindGetUserInfo:function(){
+    let _this = this
+    wx.getUserInfo({
+      success: function (res) {
+        // console.log(res.userInfo)
+        let app = getApp()
+        app.data.nickName = res.userInfo.nickName;
+        app.data.picUrl = res.userInfo.avatarUrl;
+        wx.showToast({
+          title: '授权成功',
+          icon: 'success',
+          duration: 2000
+        });
+        _this.setData({
+          username: res.userInfo.nickName,
+          picUrl: res.userInfo.avatarUrl
+        })
+      }
+    })
   }
 })
