@@ -1,6 +1,17 @@
 .page {
   height: 100%;
   box-sizing: border-box;
+  position: relative;
+}
+.send_bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  top:0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 .mailsend_nodata {
   padding-top: 400rpx;
@@ -11,63 +22,101 @@
 .weui-loadmore {
   margin-top: 0;
 }
+.btn_default {
+  background-color: #f3d4ac;
+  border: 1px solid #CB9252;
+  border-radius: 16px;
+  font-family: PingFangSC-Regular;
+  font-size: 32rpx;
+  color: rgba(90,31,0,0.80);
+}
 scroll-view {
   height: 100%;
-  padding: 60rpx 0;
+  padding: 108rpx 0;
   box-sizing: border-box;
   white-space:nowrap;
 }
 .mailCard {
-  width: 80%;
-  height: calc(100% - 120rpx);
-  margin: 0 30rpx;
+  width: 70%;
+  height: calc(100% - 326rpx);
+  margin-right: 60rpx;
   border-radius: 20rpx;
+  box-shadow: 0 6px 20px 0 #FFE6C6;
   background-color: #fff;
-  border: 2rpx solid #D9D9D9;
   box-sizing: border-box;
   font-size: 32rpx;
   color: darkgray;
   font-weight: 400;
   position: relative;
 }
+.mailCard.first_card {
+  margin-left: 60rpx;
+}
 .scroll-view-item{
   display: inline-block;
   vertical-align: top;
 }
-.mail_poster {
-  margin: 100rpx auto 20rpx auto;
-}
 .mail_poster image {
-  width: 400rpx;
-  height: 400rpx;
-  border: 2rpx solid #D9D9D9;
+  width: 100%;
+  height: 376rpx;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  
 }
 .mail_status {
-  font-weight: bold;
-  font-size: 50rpx;
-  color: dimgray;
+  font-family: 'HanziPenSC-W5';
+  font-size: 46rpx;
+  color: rgba(0,0,0,0.60);
+  letter-spacing: 0;
+  text-align: center;
+  margin-top: 15rpx;
+}
+.mail_poster_status {
+  font-family: 'HanziPenSC-W3';
+  font-size: 34rpx;
+  color: rgba(0,0,0,0.70);
+  letter-spacing: 0;
+  margin:  14rpx 60rpx 40rpx 60rpx;
 }
 .mail_mood {
   margin: 50rpx auto;
-  font-weight: 400;
+  font-family: HanziPenSC-W3;
   font-size: 26rpx;
+  color: rgba(0,0,0,0.50);
+  letter-spacing: 0;
+  margin:  0 60rpx;
 }
-.mail_mood image, .mail_info_time image {
-  width: 50rpx;
-  height: 50rpx;
+.mail_mood_edit {
+  position: relative;
+  text-align: left;
+}
+.mail_mood_edit_image{
+  width: 32rpx;
+  height: 32rpx;
   vertical-align: middle;
+  padding-right: 16rpx;
 }
-.mail_info_to text{
-  color: #000;
+.mail_mood_edit_line {
+  position: absolute;
+  bottom: -20rpx;
+  right: 0;
+  width: calc(100% - 48rpx);
+  height:10rpx;
 }
 .mail_info {
-  padding: 0 15rpx;
+  margin:  0 60rpx;
   position: absolute;
-  bottom: 5rpx;
-  width: 100%;
+  bottom: 15rpx;
+  width: calc(100% - 120rpx);
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: rgba(0,0,0,0.60);
+  letter-spacing: 0;
 }
-.mail_info .wux-tag{
-  margin-top: 26rpx;
+.mail_info .mail_poster_desc button{
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  line-height: 32rpx;
 }
 .modal {
   position: absolute;
@@ -80,17 +129,13 @@ scroll-view {
   padding: 20rpx;
   background-color: #fff;
 }
-.modal button {
+.btn_noradius {
   border-radius: 0;
+  border: none;
+  color: inherit
 }
-.wux-button--positive {
-  border-color: transparent;
-  background-color: #387ef5;
-  color: #fff;
-}
-.wux-button--positive:active{
-  background-color: #0c60ee;
-  color: inheart;
+button[type=default] {
+  border: none;
 }
 .modal_content {
   width:100%;

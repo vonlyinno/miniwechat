@@ -2,7 +2,7 @@
  * @Author: tinniehe 
  * @Date: 2018-08-10 11:19:19 
  * @Last Modified by: tinniehe
- * @Last Modified time: 2018-08-11 20:39:54
+ * @Last Modified time: 2018-08-12 00:47:55
  */
 import {
   $wuxToast,
@@ -36,25 +36,65 @@ Page({
         nick_name: app.data.nickName || 'who are you'
       }
     })
-    if (this.data.user.user_id) {
+    if (!this.data.user.user_id) {
       let opt = {
         url: GET_SEND_MAIL_URL,
         data: {
-          user_id: this.data.user.user_id
+          //user_id: this.data.user.user_id
         }
       }
-      let data = await this.requestApi(opt)
-      if (+data.errno === 0) {
-        list = data.data
+      //let list= await this.requestApi(opt)
+      let list = {
+        "errno": 0,
+        "data": {
+          "arrived_unread_mail": [],
+          "unarrived_mail": [{
+            "mail_id": "1",
+            "user_id": "1",
+            "poster_url": "http://f12.baidu.com/it/u=752933719,2910359121&fm=72",
+            "friend_name": "何娇羞",
+            "friend_addr": "深圳",
+            "friend_email": "tutu@qq.com",
+            "arrived_time": "",
+            "poster_status": "信使在北京迷路拉",
+            "create_time": "2018.08.06",
+            "mood": "",
+            "poster_desc": "月达",
+            "is_read": "0"
+          }],
+          "arrived_mail": [{
+            "mail_id": "1",
+            "user_id": "1",
+            "poster_url": "http://f12.baidu.com/it/u=752933719,2910359121&fm=72",
+            "friend_name": "何娇羞",
+            "friend_addr": "深圳",
+            "friend_email": "tutu@qq.com",
+            "arrived_time": "2018.08.20 15:21:22",
+            "poster_status": "信使在北京迷路拉",
+            "create_time": "2018.08.06 15:12:13",
+            "mood": "",
+            "poster_desc": "月达",
+            "is_read": "0"
+          }]
+        }
+      }
+      if (+list.errno === 0) {
+        list = list.data
+        list['arrived_unread_mail'].forEach((el, i, arr) => {
+          arr[i].arrived_text = '已送达 等待开启'
+          arr[i].arrived = 2
+        });
         list['unarrived_mail'].forEach((el, i, arr) => {
-          arr[i].arrived = 0
+          arr[i].arrived_text = '寄送中'
+          arr[i].arrived= 0
         });
         list['arrived_mail'].forEach((el, i, arr) => {
+          arr[i].arrived_text = '已送达'
           arr[i].arrived = 1
         });
         if (list) {
           this.setData({
-            list: list['unarrived_mail'].concat(list['arrived_mail'])
+            list: list['arrived_unread_mail'].concat(list['unarrived_mail'].concat(list['arrived_mail']))
           })
         }
       }
@@ -89,7 +129,7 @@ Page({
         duration: 1500,
         color: '#fff',
         text: '出错啦',
-        success () {
+        success() {
           wx.navigateBack()
         }
       })

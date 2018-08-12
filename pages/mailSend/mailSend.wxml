@@ -4,66 +4,61 @@
     <wux-row>
       <wux-col span="6" offset="3">
         <navigator url="../write/write">
-          <wux-button block type="positive">去写信</wux-button>
+          <button class="btn_default">去写信</button>
         </navigator>
       </wux-col>
     </wux-row>
   </view>
+  <image class="send_bg" src="../../assets/image/send_bg.png" mode="scaleToFill"></image>
   <scroll-view scroll-x wx:if="{{list.length}}">
-    <view class="mailCard mailCard_send scroll-view-item" wx:for="{{list}}">
+    <view class="mailCard mailCard_send scroll-view-item {{index==0 ? ' first_card': ''}}" wx:for="{{list}}">
       <view class="mail_poster text-center">
-        <image class="image-circle " src="{{item.poster_url}}"></image>
+        <image src="{{item.poster_url}}"></image>
       </view>
       <view class="mail_status text-center">
-        <text>{{item.status}}</text>
+        <text>{{item.arrived_text}}</text>
       </view>
       <view class="mail_poster_status text-center">{{item.poster_status}}</view>
       <view class="mail_mood text-center" wx:if="{{!item.arrived}}">
         <text wx:if="{{item.mood}}">emmmmm, 今天心情还不错呢。</text>
-        <view wx:if="{{!item.mood}}">
-          <text>今天还没有添加心情</text>
-          <image src="../../assets/image/edit.png" bindtap="showAddMood"></image>
+        <view class="mail_mood_edit" wx:if="{{!item.mood}}" bindtap="showAddMood">
+          <image class="mail_mood_edit_image" src="../../assets/image/send_edit.png"></image>
+          <text>点击添加心情</text>
+          <image class="mail_mood_edit_line" src="../../assets/image/send_line.png"></image>
         </view>
       </view>
-      <view class="mail_info">
-        <wux-row>
-          <wux-col span="3">
+        <wux-row wux-class="mail_info">
+          <wux-col span="8">
             <view class="mail_info_to">
               <text>TO</text>
               {{item.friend_name}}
             </view>
             <view class="mail_info_time">
-              <image src="../../assets/image/clock.png"></image>
+              <!-- <image src="../../assets/image/clock.png"></image> -->
               <text>{{item.create_time}}</text>
             </view>
           </wux-col>
-          <wux-col span="2" offset="7">
-            <wux-tag color="green">月达</wux-tag>
+          <wux-col span="4" wux-class="mail_poster_desc">
+            <button class="btn_default">{{item.poster_desc}}</button>
           </wux-col>
         </wux-row>
-      </view>
     </view>
-    <view class="mailCard mailCard_send scroll-view-item"></view>
-    <view class="mailCard mailCard_send scroll-view-item"></view>
-    <view class="mailCard mailCard_send scroll-view-item"></view>
   </scroll-view>
-  <wux-backdrop id="wux-backdrop"/>
-
+  <wux-backdrop id="wux-backdrop" />
   <wux-animation-group in="{{in}}" class-names="wux-animate--slideInUp" wux-class="modal_content">
     <view class="modal">
       <form bindsubmit="formSubmit" bindreset="formReset">
-        <textarea placeholder="不超过140个字" name="mood"/>
+        <textarea placeholder="不超过140个字" name="mood" focus="true"/>
         <wux-row>
           <wux-col span="6">
-            <button  class="wux-button--positive" formType="submit">确定</button>
+            <button class="btn_default btn_noradius" formType="submit">确定</button>
           </wux-col>
           <wux-col span="6">
-            <button  type="default" formType="reset">取消</button>
+            <button type="default" class="btn_noradius" formType="reset">取消</button>
           </wux-col>
         </wux-row>
       </form>
     </view>
   </wux-animation-group>
-
   <wux-toast id="wux-toast" />
 </view>

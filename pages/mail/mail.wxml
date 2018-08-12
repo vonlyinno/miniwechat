@@ -1,9 +1,9 @@
 <view class="page mail_page">
-  <wux-animation-group in="{{showRoutine}}" class-names="wux-animate--fadeIn" exit="{{false}}" duration="{{2000}}">
+  <wux-animation-group in="{{showRoutine}}" class-names="wux-animate--slideInDown" exit="{{false}}" duration="{{2000}}">
     <view class="mail_routine">
       <view class="mail_hd">
         <view class="mail_logo">
-          <image mode="widthFix" src="../../assets/image/title1.png"></image>
+          悠 邮
         </view>
         <view class="mail_sec_title">慢 递 邮 局</view>
         <view class="mail_title">邮件签收单</view>
@@ -16,28 +16,28 @@
         </view>
         <view class="mail_stat">
           <view>经统计</view>
-          <view>信使xx共发生了{{mail.timeline.length}}次事件</view>
-          <view>接受寄信人的传音消息x次</view>
+          <view>信使xx共发生了{{mail.time_line.length}}次事件</view>
+          <view>接受寄信人的传音消息{{mail.mood_count}}次</view>
         </view>
       </view>
       <view class="divider_dot"></view>
       <view class="mail_bd">
         <view class="mail_bd_content">
-          <wux-row wux-class="poster_record" wx:for="{{mail.timeline}}">
+          <wux-row wux-class="poster_record" wx:for="{{mail.time_line}}">
             <wux-col span="2">
-              <image class="image-bordered image-circle" src=""></image>
+              <image class="image-bordered image-circle" src="{{mail.poster_url}}"></image>
             </wux-col>
             <wux-col span="9" offset="1">
               <view>{{item.mood_time}}</view>
               <view>{{item.poster_status}}</view>
-              <view class="bg_dialog">
+              <view class="bg_dialog" wx:if="{{item.mood!==''}}">
                 {{item.mood}}
               </view>
             </wux-col>
           </wux-row>
         </view>
       </view>
-      <view class="divider_dot"></view>
+      <view class="divider_dot" wx:if="{{mail.time_line.length}}"></view>
       <view class="mail_ft">
         <view>确认签收，查看邮件</view>
         <image mode="widthFix" src="../../assets/image/mail.png" bindtap="showMail"></image>
@@ -45,9 +45,9 @@
     </view>
   </wux-animation-group>
   
-  <wux-animation-group in="{{!showRoutine}}" class-names="wux-animate--slideInUp" wux-class="mail_wrapper" exit="{{false}}" duration="{{2000}}">
+  <wux-animation-group in="{{!showRoutine}}" class-names="wux-animate--slideInDown" wux-class="mail_wrapper" exit="{{false}}" duration="{{2000}}">
     <view class="mail_content">
-      <view class="content_title">TO 何娇羞</view>
+      <view class="content_title">TO {{mail.friend_name}}</view>
       <view class="content">
         <block wx:for="{{mail.content}}">
         <view class="content_text" wx:if="{{item.type === 'text'}}">
@@ -59,7 +59,7 @@
         </block>
       </view>
     </view>
-      <image src="../../assets/image/arrow.png" mode="widthFix" class="btn_back image-circle" bindtap="showRoutine"></image>
+    <image src="../../assets/image/arrow.png" mode="widthFix" class="btn_back image-circle" bindtap="showRoutine"></image>
   </wux-animation-group>
 
   <wux-toast id="wux-toast" />
