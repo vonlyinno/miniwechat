@@ -1,0 +1,12 @@
+/* pages/writeConfirm.wxss */
+
+.icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+.slider{
+  margin-left: 80px;
+  margin-right: 80px;
+  
+}

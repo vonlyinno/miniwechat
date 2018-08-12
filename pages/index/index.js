@@ -22,7 +22,8 @@ Page({
     this.data.nickName = app.data.nickName
     this.data.picUrl = app.data.picUrl
     this.data.userid = app.data.userid
-    this.setData({ username: app.data.nickName, picUrl: app.data.picUrl })
+    if(this.data.nickName && this.data.picUrl)
+      this.setData({ username: this.data.nickName, picUrl: this.data.picUrl })
   },
 
   /**

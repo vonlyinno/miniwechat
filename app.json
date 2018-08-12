@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/register/register",
     "pages/index/index",
     "pages/write/write",
@@ -8,7 +7,10 @@
     "pages/mail/mail",
     "pages/mailState/mailState",
     "pages/mailSend/mailSend",
-    "pages/mailReceive/mailReceive"
+    "pages/mailReceive/mailReceive",
+    "pages/writeConfirm/writeConfirm" ,
+    "pages/editor/editor"
+    
   ],
   "window": {
     "navigationBarTextStyle": "black",

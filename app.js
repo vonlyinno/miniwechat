@@ -5,6 +5,8 @@ App({
     userid:undefined,
     nickName: undefined,
     picUrl: undefined,
+    content:undefined,
+    friendName:undefined
   },
   onLaunch: function() {
 

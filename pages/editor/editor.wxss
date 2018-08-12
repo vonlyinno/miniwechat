@@ -1,5 +1,4 @@
-/* pages/write/write.wxss */
-
+/* pages/report/content.wxss */
 .icon{
     width: 52rpx;
     height: 52rpx;

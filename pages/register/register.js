@@ -285,8 +285,9 @@ Page({
     console.log('todo，根据openid询问后台' + openid);
     let _this = this;
     //现在默认跳去主页，之后要注册成功才能跳过去
-    this.loginSuccess();
     this.getUserNameAndPic()
+    this.loginSuccess()
+    
     // this.gotoRegister(_this);
     //之后要注释掉上面的代码，现在只是为了方便调试。下面的代码要取消注释
 
@@ -299,13 +300,14 @@ Page({
     //     'content-type': 'application/json' // 默认值
     //   },
     //   success: function (res) {
-    //     _this.getUserNameAndPic()
+    //     
     //     let errno = res.data.errno;
     //     if (errno) {
     //       if (errno === 0) {
     //         if (res.data.is_registered === 1) {
     //           //注册了可以去首页
     // getApp().data.userid = res.data.user_id;
+    //        todo，注册过的，服务器会保存昵称和头像url，这里要赋值一下
     //           _this.loginSuccess();
     //         } else {
     //           //要去注册了
@@ -328,6 +330,9 @@ Page({
         app.data.nickName = res.userInfo.nickName;
         app.data.picUrl = res.userInfo.avatarUrl;
         console.log(app.data.nickName)
+      },
+      fail:function(res){
+        console.log('获取用户昵称、头像失败：'+res)
       }
     })
   },

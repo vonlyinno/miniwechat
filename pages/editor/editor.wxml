@@ -1,34 +1,5 @@
-<!--pages/write/write.wxml-->
-<view class='page'>
+<view class="page">
 
-  <view class="weui-panel__bd">
-    <view class="weui-media-box weui-media-box_small-appmsg">
-      <view class="weui-cells weui-cells_in-small-appmsg">
-        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-          <text class="weui-cell__hd">from</text>
-          <view class="weui-cell__hd">
-            <image src="{{picUrl}}" style="width: 20px;height: 20px;margin-right: 5px" />
-          </view>
-          <view class="weui-cell__bd weui-cell_primary">
-            <view>{{nickName}}</view>
-          </view>
-
-        </view>
-        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-          <text class="weui-cell__hd" decode="{{true}}">to&nbsp;&nbsp;&nbsp;&nbsp;</text>
-
-          <view class="weui-cell__bd weui-cell_primary">
-            <input  placeholder='添加收件人姓名' bindinput='friendNameInput'></input>
-          </view>
-
-        </view>
-      </view>
-    </view>
-  </view>
-
-
-
-<view class='page__bd sbox'>
   <view class="page__bd sbox">
     <form bindsubmit="formSubmit">
       <!-- diy 模块 -->
@@ -44,7 +15,7 @@
                     <view bindtap="handBlockClose" data-index="{{index}}" class="icon icon-close"></view>
                   </view>
                   <block wx:if="{{ item.type=='text' }}">
-                    <textarea class="u-textarea" name="field[{{item.index}}]" bindinput="bindContentInput" data-index="{{index}}" value="{{ item.value }}" placeholder="请输入..."></textarea>
+                    <textarea class="u-textarea" name="field[{{item.index}}]" bindinput="bingContentInput" data-index="{{index}}" value="{{ item.value }}" placeholder="请输入..."></textarea>
                   </block>
                   <block wx:if="{{ item.type=='image' }}">
                     <input type="text" name="field[{{item.index}}]" value="{{item.value}}" style="display: none;" readonly="readonly" />
@@ -54,10 +25,10 @@
                 <block wx:else>
                   <view class="flex padding">
                     <view class="flex__item block__item-type" animation="{{item.fadeOutLeft}}">
-                      <view class="block__item-type-text" bindtap="bindTypeSelect" data-type='text' data-index="{{index}}"></view>
+                      <view class="block__item-type-text" bindtap="bingTypeSelect" data-type='text' data-index="{{index}}"></view>
                     </view>
                     <view class="flex__item" animation="{{item.fadeOutRight}}">
-                      <view class="block__item-type-image" bindtap="bindTypeSelect" data-type='image' data-index="{{index}}"></view>
+                      <view class="block__item-type-image" bindtap="bingTypeSelect" data-type='image' data-index="{{index}}"></view>
                     </view>
                   </view>
                 </block>
@@ -73,9 +44,8 @@
       </view>
 
       <view class="block__btns">
-        <button formType="submit" class="btn btn-primary btn-blank" disabled="{{submitDisabled}}">完成</button>
+        <button formType="submit" class="btn btn-primary btn-blank" disabled="{{submitDisabled}}">提交</button>
       </view>
     </form>
   </view>
-</view>
 </view>

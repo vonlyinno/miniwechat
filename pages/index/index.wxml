@@ -33,3 +33,13 @@
     <text>注册</text>
   </navigator>
 </view>
+<view class="editor" hidden='true'>
+  <navigator url="../editor/editor" open-type="navigate" class="uploader-text">
+    <text>编辑器</text>
+  </navigator>
+</view>
+<view >
+  <navigator url="../writeConfirm/writeConfirm" open-type="navigate" class="uploader-text">
+    <text>写信确认</text>
+  </navigator>
+</view>
