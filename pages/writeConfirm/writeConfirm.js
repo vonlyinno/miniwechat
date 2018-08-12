@@ -1,6 +1,6 @@
 // pages/writeConfirm.js
-const COMMIT_MAIL_URL = 'http://193.112.91.187/manji/public/index.php/index/index/commit_mail'
-const GET_POSTMAN_URL = 'http://193.112.91.187/manji/public/index.php/index/index/get_poster'
+const COMMIT_MAIL_URL = 'http://193.112.91.187/yoyou/public/index.php/index/index/commit_mail'
+const GET_POSTMAN_URL = 'http://193.112.91.187/yoyou/public/index.php/index/index/get_poster'
 Page({
 
   /**
@@ -19,9 +19,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-console.log(this.data.friendName)
+// console.log(this.data.friendName)
+    //请求信息
+    this.requestPostman()
   },
 
+  requestPostman:function(){
+    wx.request({
+      url: GET_POSTMAN_URL,
+      success:function(res){
+        if(res.data.errno && res.data.errno==0){
+          let postmans = res.data.data;
+          //之后要解析并刷新信使的值以显示出来
+        }else{
+          console.log('请求信使返回失败')
+        }
+      },
+      fail:function(res){
+        console.log('请求信使网络失败')
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -89,17 +107,17 @@ console.log(this.data.friendName)
     wx.request({
       url: COMMIT_MAIL_URL,
       method:'POST',
-      data:{
+      data:{data:{
         user_id:this.data.userid,
         poster_id:this.data.poster_id || 0,
         friend_name:this.data.friendName,
         friend_addr_id:this.data.recvRealAddr,
         friend_email:this.data.recvAddr,
-        content:this.data.content
+        content:this.data.content}
       },
       success:function(res){
         if(res.data){
-          if(res.data.ret){
+          if(res.data.errno==0){
             console.log('寄信成功')
           }else{
             console.log('寄信返回失败')

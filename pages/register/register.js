@@ -9,12 +9,12 @@ Page({
     authHidden: true,
     prompt: "正在登陆……",
     loginHidden: false,
-    email:undefined,
-    checkCode:undefined,
-    getCheckCodePrompt:"获取验证码",
-    checkCodeBtnRefreshTime:60,//这是常量，获取验证码按钮点击后的恢复时间
-    leftTime:0,//
-    
+    email: undefined,
+    checkCode: undefined,
+    getCheckCodePrompt: "获取验证码",
+    checkCodeBtnRefreshTime: 10, //这是常量，获取验证码按钮点击后的恢复时间
+    leftTime: 0, //
+
   },
 
   /**
@@ -106,11 +106,11 @@ Page({
   onShareAppMessage: function() {
 
   },
-  emailInput:function(e){
+  emailInput: function(e) {
     this.data.email = e.detail.value;
     // console.log(this.data.email)
   },
-  checkCodeInput:function(e){
+  checkCodeInput: function(e) {
     this.data.checkCode = e.detail.value;
     // console.log(this.data.checkCode)
   },
@@ -119,52 +119,53 @@ Page({
     // console.log('绑定邮箱')
     let checkCode = this.data.checkCode;
     let email = this.data.email;
-    if(!checkCode || checkCode.length ==0 ){
+    if (!checkCode || checkCode.length == 0) {
       wx.showToast({
         title: '未输入验证码',
         icon: 'none',
         duration: 3000
       });
-    }else if(!email || email.length ==0){
+    } else if (!email || email.length == 0) {
       wx.showToast({
         title: '未输入邮箱',
         icon: 'none',
         duration: 3000
       });
-    }
-    else{
-      let vuid = getApp().data.userid;
+    } else {
+      let vuid = getApp().data.openid;
       let email = this.data.email;
       let check_code = this.data.checkCode;
       let user_name = getApp().data.nickName;
       let user_img = getApp().data.picUrl;
       let _this = this;
-      // wx.request({
-      //   url: 'http://193.112.91.187/manji/public/index.php/index/index/check_verification_code', //仅为示例，并非真实的接口地址
-      //   data: {
-      //     vuid:vuid,
-      //     email:email,
-      //     check_code:check_code,
-      //     user_name:user_name,
-      //     user_img:user_img
-      //   },
-      //   method:'POST',
-      //   header: {
-      //     'content-type': 'application/json' // 默认值
-      //   },
-      //   success: function (res) {
-      //     if(res.data.ret == 0){
-      //       _this.bindEmailSuccess()
-      //     }else{
-      //       _this.bindEmailFail();
-      //     }
-      //   },
-      //   fail: function (res) {
-      //     console.log("绑定邮箱网络失败")
-      //     _this.bindEmailFail()
+      wx.request({
+        url: 'http://193.112.91.187/yoyou/public/index.php/index/index/check_verification_code', //仅为示例，并非真实的接口地址
+        data: {
+          data: {
+            vuid: vuid,
+            email: email,
+            check_code: check_code,
+            user_name: user_name,
+            user_img: user_img
+          }
+        },
+        method: 'GET',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function(res) {
+          if (res.data.errno == 0) {
+            _this.bindEmailSuccess()
+          } else {
+            _this.bindEmailFail();
+          }
+        },
+        fail: function(res) {
+          console.log("绑定邮箱网络失败")
+          _this.bindEmailFail()
 
-      //   }
-      // })
+        }
+      })
       //todo 这个很坑啊，不能用回调控制消失？
       wx.showToast({
         title: '数据加载中',
@@ -172,10 +173,10 @@ Page({
         duration: 3000
       });
       // this.bindEmailFail()
-      this.bindEmailSuccess()
+      // this.bindEmailSuccess()
     }
   },
-  bindEmailSuccess:function(){
+  bindEmailSuccess: function() {
     wx.showToast({
       title: '绑定成功',
       icon: 'loading',
@@ -187,7 +188,7 @@ Page({
     })
 
   },
-  bindEmailFail:function(){
+  bindEmailFail: function() {
     wx.showToast({
       title: '网络错误',
       icon: 'none',
@@ -196,20 +197,20 @@ Page({
   },
   //向后台申请生产验证码
   generateCheckCodeByEmail: function() {
-    if(this.data.leftTime>0) return;
+    if (this.data.leftTime > 0) return;
     let email = this.data.email;
-    if(email){
-      if(email.length>0){
+    if (email) {
+      if (email.length > 0) {
         // console.log('获取验证码')
         this.onGetCheckCodeBtn(email)
-      }else{
+      } else {
         wx.showToast({
           title: '未输入邮箱',
           icon: 'none',
           duration: 3000
         });
       }
-    }else{
+    } else {
       wx.showToast({
         title: '未输入邮箱',
         icon: 'none',
@@ -218,42 +219,51 @@ Page({
     }
 
   },
-  onGetCheckCodeBtn:function(email){
+  onGetCheckCodeBtn: function(email) {
     //先设置按钮禁用，倒计时后恢复
     this.updateGetCheckCodeBtn(this.data.checkCodeBtnRefreshTime);
     //然后要求服务器生成验证码
     this._generateCheckCodeByEmail(email);
   },
-  updateGetCheckCodeBtn(time){
-    if(time==0){
-      this.setData({ getCheckCodePrompt:"获取验证码"})
-    }else{
-      this.setData({ getCheckCodePrompt: --time+"s后可点" })
+  updateGetCheckCodeBtn(time) {
+    if (time == 0) {
+      this.setData({
+        getCheckCodePrompt: "获取验证码"
+      })
+    } else {
+      this.setData({
+        getCheckCodePrompt: --time + "s后可点"
+      })
       let _this = this;
-      setTimeout(function(){_this.updateGetCheckCodeBtn(time)},1000)
+      setTimeout(function() {
+        _this.updateGetCheckCodeBtn(time)
+      }, 1000)
     }
-    this.data.leftTime=time;
+    this.data.leftTime = time;
   },
-  _generateCheckCodeByEmail(email){
-    // wx.request({
-    //   url: 'http://193.112.91.187/manji/public/index.php/index/index/get_verification_code', //仅为示例，并非真实的接口地址
-    //   data: {
-    //     email:email
-    //   },
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success: function (res) {
-    //     if(res.data.ret ==0){
-    //       console.log("生产验证码成功")
-    //     }else{
-    //       console.log("生成验证码失败")
-    //     }
-    //   },
-    //   fail:function(res){
-    //     console.log("请求服务器生成验证码网络失败")
-    //   }
-    // })
+  _generateCheckCodeByEmail(email) {
+    wx.request({
+      url: 'http://193.112.91.187/yoyou/public/index.php/index/index/get_verification_code', //仅为示例，并非真实的接口地址
+      data: {
+        data: {
+          vuid: getApp().data.openid,
+          email: email
+        }
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function(res) {
+        if (res.data.errno == 0) {
+          console.log("生产验证码成功")
+        } else {
+          console.log("生成验证码失败")
+        }
+      },
+      fail: function(res) {
+        console.log("请求服务器生成验证码网络失败")
+      }
+    })
   },
   //获取授权函数,获取授权后会获取用户名和头像url，并设置为全局变量
   //nickName 用户名
@@ -286,40 +296,51 @@ Page({
     let _this = this;
     //现在默认跳去主页，之后要注册成功才能跳过去
     this.getUserNameAndPic()
-    this.loginSuccess()
-    
-    // this.gotoRegister(_this);
-    //之后要注释掉上面的代码，现在只是为了方便调试。下面的代码要取消注释
+    // this.loginSuccess()
 
-    // wx.request({
-    //   url: 'http://193.112.91.187/manji/public/index.php/index/index/is_registered', //仅为示例，并非真实的接口地址
-    //   data: {
-    //     vuid: openid
-    //   },
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success: function (res) {
-    //     
-    //     let errno = res.data.errno;
-    //     if (errno) {
-    //       if (errno === 0) {
-    //         if (res.data.is_registered === 1) {
-    //           //注册了可以去首页
-    // getApp().data.userid = res.data.user_id;
-    //        todo，注册过的，服务器会保存昵称和头像url，这里要赋值一下
-    //           _this.loginSuccess();
-    //         } else {
-    //           //要去注册了
-    //           _this.gotoRegister();
-    //         }
-    //       }
-    //     }
-    //   },
-    //   fail: function (res) {
-    //     console.log('请求是否注册服务失败！')
-    //   }
-    // })
+    // this.gotoRegister(_this);
+    // 之后要注释掉上面的代码，现在只是为了方便调试。下面的代码要取消注释
+
+    wx.request({
+      url: 'http://193.112.91.187/yoyou/public/index.php/index/index/is_registered', //仅为示例，并非真实的接口地址
+      data: {
+        data: {
+          vuid: openid
+        }
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function(res) {
+
+        let errno = res.data.errno;
+        
+          if (errno == 0) {
+            console.log('errno 0')
+            console.log(res.data.data.is_registered)
+            if (res.data.data.is_registered == 1) {
+
+              //注册了可以去首页
+              getApp().data.userid = res.data.data.user_id;
+              getApp().data.nickName = res.data.data.user_name;
+              
+
+              //  todo，注册过的，服务器会保存昵称和头像url，这里要赋值一下
+              _this.loginSuccess();
+            } else {
+              //要去注册了
+              _this.gotoRegister();
+            }
+          } else {
+            //要去注册了
+            _this.gotoRegister();
+          }
+        
+      },
+      fail: function(res) {
+        console.log('请求是否注册服务失败！')
+      }
+    })
 
   },
 
@@ -331,8 +352,8 @@ Page({
         app.data.picUrl = res.userInfo.avatarUrl;
         console.log(app.data.nickName)
       },
-      fail:function(res){
-        console.log('获取用户昵称、头像失败：'+res)
+      fail: function(res) {
+        console.log('获取用户昵称、头像失败：' + res)
       }
     })
   },

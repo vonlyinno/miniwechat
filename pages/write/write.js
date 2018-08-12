@@ -1,4 +1,6 @@
 // pages/write/write.js
+const UPLOAD_IMAGE_URL = 'http://193.112.91.187/yoyou/public/index.php/index/index/upload_image';
+
 Page({
   //写信有两个界面，用navigateTo跳转
   /**
@@ -162,6 +164,47 @@ Page({
         self.setData({
           'blocks': blocks
         })
+        console.log(res.tempFiles[0])
+        //self.uploadImage(tempFilePaths,index);
+
+        var helper = require('../../libs/src/index.js');
+        
+        helper.checkOrientation('checkCanvas');
+
+        helper.getBase64Image('workCanvas', res.tempFilePaths[0], function(data){
+          // console.log(data)
+          wx.request({
+            url: UPLOAD_IMAGE_URL,
+            method:'POST',
+            data:{
+              file:data
+            }
+          })
+        });
+      }
+    })
+  },
+  //网络有延迟，但这里不考虑用户调整图片顺序、删除图片这些事情了……
+  uploadImage:function(path,index){
+    console.log(path[0])
+    wx.uploadFile({
+      url: UPLOAD_IMAGE_URL,
+      filePath: path[0],
+      name: 'file',
+      success:function(res){
+        
+        if(res.data.errno!=0){
+          console.log('上传图片返回非0，图片index：'+index+',返回码：'+res.statusCode)
+        }else{
+          this.data.blocks[index].value = res.data.url;
+          self.setData({
+            'blocks': blocks
+          })
+          console.log('上传图片成功，返回url：' + res.data.url)
+        }
+      },
+      fail:function(res){
+        console.log('上传图片网络错误')
       }
     })
   },
