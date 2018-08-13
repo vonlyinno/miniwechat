@@ -1,7 +1,7 @@
 <view class="page">
   <view class="weui-loadmore" hidden="{{loginHidden}}" style='padding-top:300rpx;color:#CB9252;font-size: 40rpx;font-family: HanziPenSC-W5;'>
     <view class="weui-loading"></view>
-    <view class="weui-loadmore__tips">正在登陆</view>
+    <view class="weui-loadmore__tips">正在登录</view>
   </view>
   <view style="padding-top:400rpx;" class='text-center' hidden="{{authHidden}}">
     <button class="weui-btn btn_default"  open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"  style="width:300rpx;">点击授权</button>
