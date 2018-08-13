@@ -50,11 +50,4 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
-.btn_default {
-  background-color: #f3d4ac;
-  border: 1px solid #CB9252;
-  border-radius: 16px;
-  font-family: PingFangSC-Regular;
-  font-size: 32rpx;
-  color: rgba(90,31,0,0.80);
-}
+

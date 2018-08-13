@@ -21,14 +21,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-   
+    console.log('onload')
     //获取用户唯一id，openid
     //前端直接获取，不用请求后台了
     //然后赋值给全局变量
     let _this = this;
     wx.login({
       success: function(res) {
-
+        
         if (res.code) {
           // console.log('获取到的code：' + res.code)
           let appid = 'wx17b5bf3e88b69c45';
@@ -382,7 +382,7 @@ Page({
   gotoRegister: function() {
     wx.showToast({
       title: '请先注册',
-      icon: 'success',
+      icon: 'none',
       duration: 2000
     });
     this.setData({

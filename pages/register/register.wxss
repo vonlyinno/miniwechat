@@ -8,3 +8,6 @@ font-size:14px;
 text-align:center;
 
 }
+.weui-vcode-btn {
+  color:rgba(90,31,0,0.80);
+}
