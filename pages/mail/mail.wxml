@@ -26,7 +26,7 @@
           <view class="mail_bd_content">
             <wux-row wux-class="poster_record" wx:for="{{mail.time_line}}">
               <wux-col span="2">
-                <image class="image-bordered image-circle" src="http://193.112.91.187{{mail.poster_url}}"></image>
+                <image class="image-bordered image-circle" src="http://193.112.91.187/yoyou{{mail.poster_url}}"></image>
               </wux-col>
               <wux-col span="9" offset="1">
                 <view>{{item.mood_time}}</view>

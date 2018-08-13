@@ -13,7 +13,7 @@
     <scroll-view scroll-x wx:if="{{list.length}}">
       <view class="mailCard mailCard_send scroll-view-item {{index==0 ? ' first_card': ''}} {{list.length==1 ? ' one_card': ''}}" wx:for="{{list}}" data-id="{{item.mail_id}}" data-arrived="{{item.arrived}}" bind:tap="gotoMail">
         <view class="mail_poster text-center">
-          <image src="http://193.112.91.187{{item.addr_url}}"></image>
+          <image src="http://193.112.91.187/yoyou{{item.addr_url}}"></image>
         </view>
         <view class="mail_status text-center">
           <text>{{item.arrived_text}}</text>
