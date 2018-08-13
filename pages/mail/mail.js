@@ -2,7 +2,7 @@
  * @Author: tinniehe 
  * @Date: 2018-08-11 20:08:50 
  * @Last Modified by: tinniehe
- * @Last Modified time: 2018-08-13 12:35:12
+ * @Last Modified time: 2018-08-13 21:34:25
  */
 
 import {
@@ -122,9 +122,6 @@ Page({
       wx.request({
         ...opt,
         success(data) {
-          that.setData({
-            spinning: false,
-          })
           let res = data.data
           if (res.errno !== 0) {
             $wuxToast().show({
@@ -134,21 +131,18 @@ Page({
               text: '出错啦'
             })
           }
-          resolve(res)
+          resolve(res)         
         },
         fail() {
-          that.setData({
-            spinning: false
-          })
-          $wuxToast().show({
-            type: 'cancel',
-            duration: 1500,
-            color: '#fff',
-            text: '出错啦',
-            success() {
-              // wx.navigateBack()
-            }
-          })
+            $wuxToast().show({
+              type: 'cancel',
+              duration: 1500,
+              color: '#fff',
+              text: '出错啦',
+              success() {
+                 wx.navigateBack()
+              }
+            })
         }
       })
     })

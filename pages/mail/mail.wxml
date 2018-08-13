@@ -1,5 +1,4 @@
 <view class="page mail_page">
-  <wux-spin class="full-page" wux-class="full-page" spinning="{{ spinning }}" tip="Loading..." size="default">
     <wux-animation-group in="{{showRoutine}}" class-names="wux-animate--slideInDown" exit="{{false}}" duration="{{2000}}">
       <view class="mail_routine">
         <view class="mail_hd">
@@ -62,6 +61,5 @@
       </view>
     </wux-animation-group>
     <image src="../../assets/image/arrow.png" mode="widthFix" class="btn_back image-circle" bindtap="showRoutine" hidden="{{!showBtnToRoutine}}"></image>
-  </wux-spin>
   <wux-toast id="wux-toast" />
 </view>
