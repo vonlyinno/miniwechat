@@ -47,7 +47,7 @@
     
     <wux-animation-group class="full-page" in="{{showMail}}" class-names="wux-animate--slideInDown" wux-class="mail_wrapper" exit="{{false}}" duration="{{2000}}">
       <view class="mail_content">
-        <view class="content_title">TO {{mail.friend_name}}</view>
+        <view class="content_title">{{isSend ? 'TO': 'FROM'}} {{mail.friend_name}}</view>
         <view class="content">
           <block wx:for="{{mail.content}}">
           <view class="content_text" wx:if="{{item.type === 'text'}}">

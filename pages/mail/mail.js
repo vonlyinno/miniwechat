@@ -23,7 +23,8 @@ Page({
     showMail: false,
     showBtnToRoutine: false,
     spinning: true,
-    mail: {}
+    mail: {},
+    isSend: false
   },
 
   /**
@@ -48,6 +49,9 @@ Page({
           }
         }
       }
+      this.setData({
+        isSend: true
+      })
       
     } else {
       opt = {
