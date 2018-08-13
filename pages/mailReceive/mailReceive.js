@@ -42,12 +42,12 @@ Page({
         list.map((item, i, input) => {
           let content = JSON.parse(item.content)
           let cover = content.find((j) => {
-            return j.type === 'img' && j.value
+            return j.type === 'image' && j.value
           })
           if (cover) {
-            input[i].mail_cover = cover
+            input[i].mail_cover = cover.value
           }else {
-            input[i].mail_cover = '/public/cover/cover.png'
+            input[i].mail_cover = 'http://193.112.91.187/yoyou/public/cover/cover.png'
           }
           //time
           let date = new Date(item.create_time * 1000)

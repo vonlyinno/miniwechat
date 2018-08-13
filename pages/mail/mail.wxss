@@ -94,7 +94,7 @@
 .mail_ft image{
   display: inline-block;
   margin-top: 20rpx;
-  width: 100rpx;
+  width: 150rpx;
 }
 .mail_content {
   font-family: 'HanziPenSC-W3';

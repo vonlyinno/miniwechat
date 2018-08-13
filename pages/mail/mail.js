@@ -70,14 +70,20 @@ Page({
           return item.mood !== ''
         })
         mail.mood_count = mood.length
+        mail.time_line.map((item, i, input) => {
+          let date = new Date(input[i].poster_status_stime * 1000)
+          input[i].poster_status_stime = date.format('yyyy.MM.dd')
+        })
       }
       // time
-      let time_diff = mail.arrive_time - mail.create_time
+      let time_diff = mail.arrived_time - mail.create_time
+ 
       mail.time_diff = this.calcTimediff(time_diff * 1000)
+
       let date1 = new Date(mail.create_time * 1000)
-      let date2 = new Date(mail.arrive_time * 1000)
+      let date2 = new Date(mail.arrived_time * 1000)
       mail.create_time = date1.format('yyyy.MM.dd')
-      mail.arrive_time = date2.format('yyyy.MM.dd')
+      mail.arrived_time = date2.format('yyyy.MM.dd')
       //content
       mail.content = JSON.parse(mail.content)
       this.setData({
@@ -122,9 +128,6 @@ Page({
       wx.request({
         ...opt,
         success(data) {
-          that.setData({
-            spinning: false,
-          })
           let res = data.data
           if (res.errno !== 0) {
             $wuxToast().show({
@@ -137,9 +140,6 @@ Page({
           resolve(res)
         },
         fail() {
-          that.setData({
-            spinning: false
-          })
           $wuxToast().show({
             type: 'cancel',
             duration: 1500,

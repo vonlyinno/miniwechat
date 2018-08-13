@@ -1,5 +1,4 @@
 <view class="page mail_page">
-  <wux-spin class="full-page" wux-class="full-page" spinning="{{ spinning }}" tip="Loading..." size="default">
     <wux-animation-group in="{{showRoutine}}" class-names="wux-animate--slideInDown" exit="{{false}}" duration="{{2000}}">
       <view class="mail_routine">
         <view class="mail_hd">
@@ -29,9 +28,9 @@
                 <image class="image-bordered image-circle" src="http://193.112.91.187/yoyou{{mail.poster_url}}"></image>
               </wux-col>
               <wux-col span="9" offset="1">
-                <view>{{item.mood_time}}</view>
+                <view>{{item.poster_status_stime}}</view>
                 <view>{{item.poster_status}}</view>
-                <view class="bg_dialog" wx:if="{{item.mood!==''}}">
+                <view class="bg_dialog" wx:if="{{item.mood}}">
                   {{item.mood}}
                 </view>
               </wux-col>
@@ -62,6 +61,5 @@
       </view>
     </wux-animation-group>
     <image src="../../assets/image/arrow.png" mode="widthFix" class="btn_back image-circle" bindtap="showRoutine" hidden="{{!showBtnToRoutine}}"></image>
-  </wux-spin>
   <wux-toast id="wux-toast" />
 </view>

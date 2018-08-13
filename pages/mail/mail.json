@@ -4,7 +4,6 @@
     "wux-col": "../../components/col/index",
     "wux-floating-button": "../../components/floating-button/index",
     "wux-animation-group": "../../components/animation-group/index" ,
-    "wux-toast": "../../components/toast/index",
-    "wux-spin": "../../components/spin/index"
+    "wux-toast": "../../components/toast/index"
   }
 }

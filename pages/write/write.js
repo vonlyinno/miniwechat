@@ -259,7 +259,7 @@ Page({
 
     })
     form.content = JSON.stringify(contents);
-
+    debugger
 
     getApp().data.content = form.content;
     getApp().data.friendName = this.data.friendName;
