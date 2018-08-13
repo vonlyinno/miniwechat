@@ -14,7 +14,7 @@
       <view class="mail_card">
           <image class="image_e_btm" mode="widthFix" src="../../assets/image/recv_e_btm.png"></image>
           <image class="image_e_top" mode="widthFix" src="../../assets/image/recv_e_top.png"></image>        
-          <image class="mail_cover" src="http://193.112.91.187{{item.mail_cover}}"></image>
+          <image class="mail_cover" src="http://193.112.91.187/yoyou{{item.mail_cover}}"></image>
         <view class="mail_info">
           <wux-row>
             <wux-col span="6">
