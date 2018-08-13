@@ -17,6 +17,10 @@ page{
   font-weight: 400;
   font-size: 32rpx;
 }
+.full-page{
+  width: 100%;
+  height: 100%;
+}
 .text-center {
   text-align: center;
 }

@@ -1,32 +1,32 @@
 <view class="page mailsend_page">
-  <view class="mailsend_nodata weui-loadmore weui-loadmore_line" wx:if="{{!list.length}}">
-    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">--- 暂无信件 ---</view>
-    <wux-row>
-      <wux-col span="6" offset="3">
-        <navigator url="../write/write">
-          <button class="btn_default">去写信</button>
-        </navigator>
-      </wux-col>
-    </wux-row>
-  </view>
-  <image class="send_bg" src="../../assets/image/send_bg.png" mode="scaleToFill"></image>
-  <scroll-view scroll-x wx:if="{{list.length}}">
-    <view class="mailCard mailCard_send scroll-view-item {{index==0 ? ' first_card': ''}}" wx:for="{{list}}">
-      <view class="mail_poster text-center">
-        <image src="{{item.poster_url}}"></image>
-      </view>
-      <view class="mail_status text-center">
-        <text>{{item.arrived_text}}</text>
-      </view>
-      <view class="mail_poster_status text-center">{{item.poster_status}}</view>
-      <view class="mail_mood text-center" wx:if="{{!item.arrived}}">
-        <text wx:if="{{item.mood}}">emmmmm, 今天心情还不错呢。</text>
-        <view class="mail_mood_edit" wx:if="{{!item.mood}}" bindtap="showAddMood">
-          <image class="mail_mood_edit_image" src="../../assets/image/send_edit.png"></image>
-          <text>点击添加心情</text>
-          <image class="mail_mood_edit_line" src="../../assets/image/send_line.png"></image>
+    <view class="mailsend_nodata weui-loadmore weui-loadmore_line" wx:if="{{!list.length}}">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">--- 暂无信件 ---</view>
+      <wux-row>
+        <wux-col span="6" offset="3">
+          <navigator url="../write/write">
+            <button class="btn_default">去写信</button>
+          </navigator>
+        </wux-col>
+      </wux-row>
+    </view>
+    <image class="send_bg" src="../../assets/image/send_bg.png" mode="scaleToFill"></image>
+    <scroll-view scroll-x wx:if="{{list.length}}">
+      <view class="mailCard mailCard_send scroll-view-item {{index==0 ? ' first_card': ''}} {{list.length==1 ? ' one_card': ''}}" wx:for="{{list}}" data-id="{{item.mail_id}}" data-arrived="{{item.arrived}}" bind:tap="gotoMail">
+        <view class="mail_poster text-center">
+          <image src="http://193.112.91.187{{item.addr_url}}"></image>
         </view>
-      </view>
+        <view class="mail_status text-center">
+          <text>{{item.arrived_text}}</text>
+        </view>
+        <view class="mail_poster_status text-center">{{item.poster_status}}</view>
+        <view class="mail_mood text-center" wx:if="{{!item.arrived}}">
+          <view class="mail_mood_edit" data-id="{{item.mail_id}}" data-index="{{index}}" data-mood="{{item.mood}}" catchtap="showAddMood">
+            <image class="mail_mood_edit_image" src="../../assets/image/send_edit.png"></image>
+            <text wx:if="{{!item.mood}}">点击添加心情</text>
+            <text wx:if="{{item.mood}}">{{item.mood}}</text>
+            <image class="mail_mood_edit_line" src="../../assets/image/send_line.png"></image>
+          </view>
+        </view>
         <wux-row wux-class="mail_info">
           <wux-col span="8">
             <view class="mail_info_to">
@@ -42,19 +42,19 @@
             <button class="btn_default">{{item.poster_desc}}</button>
           </wux-col>
         </wux-row>
-    </view>
-  </scroll-view>
+      </view>
+    </scroll-view>
   <wux-backdrop id="wux-backdrop" />
   <wux-animation-group in="{{in}}" class-names="wux-animate--slideInUp" wux-class="modal_content">
     <view class="modal">
       <form bindsubmit="formSubmit" bindreset="formReset">
-        <textarea placeholder="不超过140个字" name="mood" focus="true"/>
+        <textarea placeholder="不超过60个字" name="mood" focus="true" maxlength="60" value="{{edit_mood}}" />
         <wux-row>
           <wux-col span="6">
             <button class="btn_default btn_noradius" formType="submit">确定</button>
           </wux-col>
           <wux-col span="6">
-            <button type="default" class="btn_noradius" formType="reset">取消</button>
+            <button  class="btn_noradius" formType="reset">取消</button>
           </wux-col>
         </wux-row>
       </form>

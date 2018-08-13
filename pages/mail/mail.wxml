@@ -1,66 +1,67 @@
 <view class="page mail_page">
-  <wux-animation-group in="{{showRoutine}}" class-names="wux-animate--slideInDown" exit="{{false}}" duration="{{2000}}">
-    <view class="mail_routine">
-      <view class="mail_hd">
-        <view class="mail_logo">
-          悠 邮
+  <wux-spin class="full-page" wux-class="full-page" spinning="{{ spinning }}" tip="Loading..." size="default">
+    <wux-animation-group in="{{showRoutine}}" class-names="wux-animate--slideInDown" exit="{{false}}" duration="{{2000}}">
+      <view class="mail_routine">
+        <view class="mail_hd">
+          <view class="mail_logo">
+            悠 邮
+          </view>
+          <view class="mail_sec_title">慢 递 邮 局</view>
+          <view class="mail_title">邮件签收单</view>
+          <view class="mail_desc">
+            <view>于{{mail.create_time}}邮件寄出</view>
+            <view>经过{{mail.time_diff}}的传递</view>
+            <view>于{{mail.arrived_time}}送达</view>
+            <view>信使{{mail.poster_name}}圆满完成任务</view>
+            <image src="../../assets/image/youpiao.jpg" mode="widthFix"></image>
+          </view>
+          <view class="mail_stat">
+            <view>经统计</view>
+            <view>信使{{mail.poster_name}}共发生了{{mail.time_line.length}}次事件</view>
+            <view>接受寄信人的传音消息{{mail.mood_count}}次</view>
+          </view>
         </view>
-        <view class="mail_sec_title">慢 递 邮 局</view>
-        <view class="mail_title">邮件签收单</view>
-        <view class="mail_desc">
-          <view>{{mail.create_time}}邮件寄出</view>
-          <view>经过XXXX的传递</view>
-          <view>于{{mail.arrived_time}}送达</view>
-          <view>信使xx圆满完成任务</view>
-          <image src="../../assets/image/youpiao.jpg" mode="widthFix"></image>
+        <view class="divider_dot"></view>
+        <view class="mail_bd">
+          <view class="mail_bd_content">
+            <wux-row wux-class="poster_record" wx:for="{{mail.time_line}}">
+              <wux-col span="2">
+                <image class="image-bordered image-circle" src="http://193.112.91.187{{mail.poster_url}}"></image>
+              </wux-col>
+              <wux-col span="9" offset="1">
+                <view>{{item.mood_time}}</view>
+                <view>{{item.poster_status}}</view>
+                <view class="bg_dialog" wx:if="{{item.mood!==''}}">
+                  {{item.mood}}
+                </view>
+              </wux-col>
+            </wux-row>
+          </view>
         </view>
-        <view class="mail_stat">
-          <view>经统计</view>
-          <view>信使xx共发生了{{mail.time_line.length}}次事件</view>
-          <view>接受寄信人的传音消息{{mail.mood_count}}次</view>
+        <view class="divider_dot" wx:if="{{mail.time_line.length}}"></view>
+        <view class="mail_ft">
+          <view>确认签收，查看邮件</view>
+          <image mode="widthFix" src="../../assets/image/mail.png" bindtap="showMail"></image>
         </view>
       </view>
-      <view class="divider_dot"></view>
-      <view class="mail_bd">
-        <view class="mail_bd_content">
-          <wux-row wux-class="poster_record" wx:for="{{mail.time_line}}">
-            <wux-col span="2">
-              <image class="image-bordered image-circle" src="{{mail.poster_url}}"></image>
-            </wux-col>
-            <wux-col span="9" offset="1">
-              <view>{{item.mood_time}}</view>
-              <view>{{item.poster_status}}</view>
-              <view class="bg_dialog" wx:if="{{item.mood!==''}}">
-                {{item.mood}}
-              </view>
-            </wux-col>
-          </wux-row>
+    </wux-animation-group>
+    
+    <wux-animation-group class="full-page" in="{{showMail}}" class-names="wux-animate--slideInDown" wux-class="mail_wrapper" exit="{{false}}" duration="{{2000}}">
+      <view class="mail_content">
+        <view class="content_title">TO {{mail.friend_name}}</view>
+        <view class="content">
+          <block wx:for="{{mail.content}}">
+          <view class="content_text" wx:if="{{item.type === 'text'}}">
+            {{item.text}}
+          </view>
+          <view class="content_image" wx:if="{{item.type === 'image'}}">
+            <image mode="widthFix" src="{{item.value}}"></image>
+          </view>
+          </block>
         </view>
       </view>
-      <view class="divider_dot" wx:if="{{mail.time_line.length}}"></view>
-      <view class="mail_ft">
-        <view>确认签收，查看邮件</view>
-        <image mode="widthFix" src="../../assets/image/mail.png" bindtap="showMail"></image>
-      </view>
-    </view>
-  </wux-animation-group>
-  
-  <wux-animation-group in="{{!showRoutine}}" class-names="wux-animate--slideInDown" wux-class="mail_wrapper" exit="{{false}}" duration="{{2000}}">
-    <view class="mail_content">
-      <view class="content_title">TO {{mail.friend_name}}</view>
-      <view class="content">
-        <block wx:for="{{mail.content}}">
-        <view class="content_text" wx:if="{{item.type === 'text'}}">
-          {{item.text}}
-        </view>
-        <view class="content_image" wx:if="{{item.type === 'pic'}}">
-          <image mode="widthFix" src="{{item.url}}"></image>
-        </view>
-        </block>
-      </view>
-    </view>
-    <image src="../../assets/image/arrow.png" mode="widthFix" class="btn_back image-circle" bindtap="showRoutine"></image>
-  </wux-animation-group>
-
+    </wux-animation-group>
+    <image src="../../assets/image/arrow.png" mode="widthFix" class="btn_back image-circle" bindtap="showRoutine" hidden="{{!showBtnToRoutine}}"></image>
+  </wux-spin>
   <wux-toast id="wux-toast" />
 </view>

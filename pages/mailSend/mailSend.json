@@ -6,6 +6,8 @@
     "wux-button": "../../components/button/index",
     "wux-toast": "../../components/toast/index",
     "wux-animation-group": "../../components/animation-group/index",
-    "wux-backdrop": "../../components/backdrop/index"
+    "wux-backdrop": "../../components/backdrop/index",
+    "wux-spin": "../../components/spin/index"
+
   }
 }
