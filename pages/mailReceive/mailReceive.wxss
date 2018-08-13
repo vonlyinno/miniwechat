@@ -4,20 +4,28 @@
   font-family: PingFangSC-Regular;
   color: rgba(0,0,0,0.70);
   letter-spacing: 0;
+  background: #FFFAF4;
 }
 
 .user_info {
   position: relative;
-  height: 378rpx;
+  height: 375rpx;
+  margin-bottom: 18rpx;
+}
+.user_info_content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
 }
 .user_info .image_header{
   position: absolute;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 1;
 }
 .user_avator {
-  padding-top: 30rpx;
+  padding-top: 29rpx;
 
 }
 .user_avator image{
@@ -25,14 +33,14 @@
   height: 210rpx;
 }
 .user_avator{
-  margin-bottom: 7rpx;
+  margin-bottom: 14rpx;
 }
 .user_name {
   font-size: 32rpx;
 }
 .user_total {
   font-size: 28rpx;
-  margin-top: 5rpx;
+  margin-top: 10rpx;
 }
 .user_total text {
   font-size: 40rpx;
@@ -41,15 +49,16 @@
 }
 .mail_list {
   margin: 0 auto;
-  width: 86%;
+  width: 640rpx;
   padding-bottom: 50rpx;
+  background: #FFFAF4;
 }
 .mail_card {
-  margin-top: 76rpx;
+  margin-top: 58rpx;
   position: relative;
 }
 .image_e_btm {
-  padding-top:41rpx;
+  padding-top:82rpx;
   width: 100%;
 }
 .image_e_top {
@@ -62,30 +71,33 @@
 .mail_cover{
   position: absolute;
   top: 0;
-  left: 44rpx;
-  width: calc(100% - 88rpx);
-  height: 330rpx;
+  left: 46rpx;
+  width: calc(100% - 92rpx);
+  height: 340rpx;
   z-index: 2;
 }
 .mail_info {
   position: absolute;
-  bottom: 18rpx;
-  left: 44rpx;
-  width: calc(100% - 88rpx);
+  bottom: 36rpx;
+  left: 46rpx;
+  width: calc(100% - 92rpx);
   font-size: 28rpx;
   z-index: 4;
   color: rgba(90,31,0,0.80);
 }
+.mail_info_time {
+  font-size: 24rpx;
+}
 .mail_info_time image {
-  width: 32rpx;
-  height: 32rpx;
+  width: 30rpx;
+  height: 30rpx;
   vertical-align: baseline;
-  padding-right: 8rpx; 
+  padding-right: 16rpx; 
 }
 .mail_poster {
   position: absolute;
-  top: 200rpx;
-  right: 44rpx;
+  bottom: 40rpx;
+  right: 46rpx;
   font-size: 24rpx;
   color: rgba(90,31,0,0.80); 
   z-index: 3;

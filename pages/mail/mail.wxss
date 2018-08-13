@@ -121,10 +121,10 @@
 .btn_back {
   width: 80rpx;
   height: 80rpx;
-  position: sticky;
+  position: fixed;
   left: calc(100% - 120rpx);
   bottom: 40rpx;
-  background: #ddd;
+  background: #fff;
   box-shadow: 0 0 8rpx rgba(0, 0, 0, 0.14), 0 8rpx 16rpx rgba(0, 0, 0, 0.28);
 }
 @keyframes slidedown {

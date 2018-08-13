@@ -1,18 +1,20 @@
 <view class="page mailreceive_page">
   <view class="user_info">
     <image class="image_header" src="../../assets/image/recv_header.png"></image>
-    <view class="user_avator  text-center">
-      <image class="image-circle" src="{{user.avator}}"></image>
+    <view class='user_info_content'>
+      <view class="user_avator  text-center">
+        <image class="image-circle" src="{{user.avator}}"></image>
+      </view>
+      <view class="user_name text-center">{{user.nick_name}}</view>
+      <view class="user_total text-center">共收到 <text>{{list.length}}</text> 封邮件</view>
     </view>
-    <view class="user_name text-center">{{user.nick_name}}</view>
-    <view class="user_total text-center">共收到 <text>{{list.length}}</text> 封邮件</view>
   </view>
   <view class="mail_list" wx:if="{{list.length}}">
-    <navigator url="../mail/mail?mail_id={{item.mail_id}}" open-type="navigate" wx:for="{{list}}">
+    <navigator wx:for="{{list}}" url="../mail/mail?mail_id={{item.mail_id}}" open-type="navigate" >
       <view class="mail_card">
           <image class="image_e_btm" mode="widthFix" src="../../assets/image/recv_e_btm.png"></image>
           <image class="image_e_top" mode="widthFix" src="../../assets/image/recv_e_top.png"></image>        
-          <image class="mail_cover" src="https://wx3.sinaimg.cn/mw690/71f4b8bcly1fu3vucxvlhj20wu0wujsu.jpg"></image>
+          <image class="mail_cover" src="http://193.112.91.187{{item.mail_cover}}"></image>
         <view class="mail_info">
           <wux-row>
             <wux-col span="6">
@@ -29,13 +31,13 @@
         </view>
         <view class="mail_poster text-center">
           <image class=" image-circle" src="{{item.poster_url}}"></image>
-          <text>信使</text>
+          <text>{{item.poster_name}}</text>
         </view>
       </view>
     </navigator>
   </view>
   <view class="weui-loadmore weui-loadmore_line" wx:if="{{!list.length}}">
-    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">--- 暂无信件 ---</view>
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">--- 还没有收到信呢 ---</view>
   </view>
   <wux-toast id="wux-toast" />
 </view>

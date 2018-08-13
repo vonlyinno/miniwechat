@@ -2,7 +2,7 @@
  * @Author: tinniehe 
  * @Date: 2018-08-10 11:19:19 
  * @Last Modified by: tinniehe
- * @Last Modified time: 2018-08-12 00:47:55
+ * @Last Modified time: 2018-08-13 13:06:54
  */
 import {
   $wuxToast,
@@ -10,8 +10,9 @@ import {
 } from '../../components/index'
 import regeneratorRuntime from '../../libs/regenerator-runtime'
 
-const GET_SEND_MAIL_URL = "//193.112.91.187/manji/public/index.php/index/index/get_all_send_email"
-const APPEND_MOOD_URL = "//193.112.91.187/manji/public/index.php/index/index/append_mail"
+const GET_SEND_MAIL_URL = "http://193.112.91.187/yoyou/public/index.php/index/index/get_all_send_mail"
+const APPEND_MOOD_URL = "http://193.112.91.187/yoyou/public/index.php/index/index/append_mail"
+
 Page({
 
   /**
@@ -21,7 +22,8 @@ Page({
     list: [],
     user: {},
     in: false,
-    edit_mail_id: ''
+    edit_mail_id: '',
+    edit_mood: ''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -36,48 +38,17 @@ Page({
         nick_name: app.data.nickName || 'who are you'
       }
     })
-    if (!this.data.user.user_id) {
+    if (this.data.user.user_id) {
       let opt = {
         url: GET_SEND_MAIL_URL,
         data: {
-          //user_id: this.data.user.user_id
+          data: {
+            user_id: this.data.user.user_id
+          }
         }
       }
-      //let list= await this.requestApi(opt)
-      let list = {
-        "errno": 0,
-        "data": {
-          "arrived_unread_mail": [],
-          "unarrived_mail": [{
-            "mail_id": "1",
-            "user_id": "1",
-            "poster_url": "http://f12.baidu.com/it/u=752933719,2910359121&fm=72",
-            "friend_name": "何娇羞",
-            "friend_addr": "深圳",
-            "friend_email": "tutu@qq.com",
-            "arrived_time": "",
-            "poster_status": "信使在北京迷路拉",
-            "create_time": "2018.08.06",
-            "mood": "",
-            "poster_desc": "月达",
-            "is_read": "0"
-          }],
-          "arrived_mail": [{
-            "mail_id": "1",
-            "user_id": "1",
-            "poster_url": "http://f12.baidu.com/it/u=752933719,2910359121&fm=72",
-            "friend_name": "何娇羞",
-            "friend_addr": "深圳",
-            "friend_email": "tutu@qq.com",
-            "arrived_time": "2018.08.20 15:21:22",
-            "poster_status": "信使在北京迷路拉",
-            "create_time": "2018.08.06 15:12:13",
-            "mood": "",
-            "poster_desc": "月达",
-            "is_read": "0"
-          }]
-        }
-      }
+      let list = await this.requestApi(opt)
+      console.log(this.data)
       if (+list.errno === 0) {
         list = list.data
         list['arrived_unread_mail'].forEach((el, i, arr) => {
@@ -86,15 +57,21 @@ Page({
         });
         list['unarrived_mail'].forEach((el, i, arr) => {
           arr[i].arrived_text = '寄送中'
-          arr[i].arrived= 0
+          arr[i].arrived = 0
         });
-        list['arrived_mail'].forEach((el, i, arr) => {
+        list['arrived_read_mail'].forEach((el, i, arr) => {
           arr[i].arrived_text = '已送达'
           arr[i].arrived = 1
         });
-        if (list) {
+        
+        list = list['arrived_unread_mail'].concat(list['unarrived_mail'],list['arrived_read_mail'])
+        if (list.length) {  
+          list.map((item, i, input) => {
+            let date = new Date(item.create_time * 1000)
+            input[i].create_time = date.format('yyyy.MM.dd')
+          })
           this.setData({
-            list: list['arrived_unread_mail'].concat(list['unarrived_mail'].concat(list['arrived_mail']))
+            list
           })
         }
       }
@@ -104,36 +81,46 @@ Page({
   onReady() {
     this.$wuxBackdrop = $wuxBackdrop('#wux-backdrop', this)
   },
-  showAddMood(mail_id = '', index = '') {
-    this.setData({ in: true,
-      edit_mail_id: mail_id,
-      edit_mail_index: index
-    })
-    this.$wuxBackdrop.retain()
-  },
-  async requestApi(opt) {
-    try {
-      let res = await wx.request(opt)
-      if (res.errno !== 0) {
-        $wuxToast().show({
-          type: 'cancel',
-          duration: 1500,
-          color: '#fff',
-          text: '出错啦'
-        })
-      }
-      return res
-    } catch (err) {
-      $wuxToast().show({
-        type: 'cancel',
-        duration: 1500,
-        color: '#fff',
-        text: '出错啦',
-        success() {
-          wx.navigateBack()
+  requestApi(opt) {
+    let that = this
+    return new Promise((resolve, reject) => {
+      wx.request({
+        ...opt,
+        success(data) {
+          let res = data.data
+          if (res.errno !== 0) {
+            $wuxToast().show({
+              type: 'cancel',
+              duration: 1500,
+              color: '#fff',
+              text: '出错啦'
+            })
+          }
+          resolve(res)
+        },
+        fail() {
+          $wuxToast().show({
+            type: 'cancel',
+            duration: 1500,
+            color: '#fff',
+            text: '出错啦',
+            success() {
+               wx.navigateBack()
+            }
+          })
         }
       })
-    }
+    })
+    
+  },
+  showAddMood(e) {
+    this.setData({ 
+      in: true,
+      edit_mail_id: e.currentTarget.dataset.id,
+      edit_mail_index: e.currentTarget.dataset.index,
+      edit_mood: e.currentTarget.dataset.mood
+    })
+    this.$wuxBackdrop.retain()
   },
   async formSubmit(event) {
     let value = event.detail.value
@@ -151,24 +138,34 @@ Page({
       url: APPEND_MOOD_URL,
       data: {
         data: {
-          mail_id: this.edit_mail_id,
+          mail_id: this.data.edit_mail_id,
           mood: value.mood
         }
-      },
-      method: 'POST'
+      }
     }
     let res = await this.requestApi(opt)
     if (+res.errno === 0) {
+      let list = this.data.list
+      list[this.data.edit_mail_index].mood = value.mood
       this.setData({
-        'list[this.edit_mail_index].mood': value.mood,
+        list,
         in: false
       })
+      console.log(this.data)
       this.$wuxBackdrop.release()
     }
   },
   formReset(event) {
-    this.setData({ in: false
+    this.setData({ 
+      in: false
     })
     this.$wuxBackdrop.release()
+  },
+  gotoMail(e) {
+    let mail_id = e.currentTarget.dataset.id
+    let arrived = e.currentTarget.dataset.arrived
+    wx.navigateTo({
+      url: `../mail/mail?type=send&mail_id=${mail_id}&arrived=${arrived}`
+    })
   }
 })
