@@ -148,7 +148,8 @@ Page({
   commitMail: function() {
     if (!this.data.recvAddr || this.data.recvAddr.length == 0) {
       wx.showToast({
-        title: '请写上对面的邮箱',
+        title: '写邮箱啊！',
+        icon:'none'
       })
       return;
     }
@@ -169,6 +170,16 @@ Page({
         if (res.data) {
           if (res.data.errno == 0) {
             console.log('寄信成功')
+            wx.showToast({
+              title: '寄信成功',
+              duration:3000
+            })
+            wx.navigateBack({
+              
+            })
+            wx.redirectTo({
+              url: '../mailSend/mailSend',
+            })
           } else {
             console.log('寄信返回失败')
           }

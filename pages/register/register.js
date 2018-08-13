@@ -7,7 +7,7 @@ Page({
   data: {
     checkCodeViewHidden: true,
     authHidden: true,
-    prompt: "正在登陆……",
+    prompt: "正在登录……",
     loginHidden: false,
     email: undefined,
     checkCode: undefined,
@@ -21,6 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+   
     //获取用户唯一id，openid
     //前端直接获取，不用请求后台了
     //然后赋值给全局变量
@@ -69,21 +70,28 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    if(this.data.out){
+      if(this.data.isLogin){
+        this.data.out=false;
+        wx.navigateTo({
+          url: '../index/index',
+        })
+      }
+    }
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+    this.data.out=true;
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
+    this.data.out=true;
   },
 
   /**
@@ -292,6 +300,7 @@ Page({
   },
   //绑定了邮箱则可进入首页，否则提示进入注册页
   checkIsBindEmail(openid) {
+   
     console.log('todo，根据openid询问后台' + openid);
     let _this = this;
     //现在默认跳去主页，之后要注册成功才能跳过去
@@ -357,16 +366,18 @@ Page({
       }
     })
   },
-  loginSuccess: function() {
-
-    wx.redirectTo({
-      url: '../index/index'
-    })
+  loginSuccess: function() {    
     wx.showToast({
-      title: '登陆成功',
+      title: '登录成功',
       icon: 'success',
-      duration: 2000
+      duration: 2000,
+      success(){
+        wx.navigateTo({
+          url: '../index/index'
+        })
+      }
     });
+    this.data.isLogin = true;
   },
   gotoRegister: function() {
     wx.showToast({

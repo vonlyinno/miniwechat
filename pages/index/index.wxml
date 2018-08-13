@@ -1,48 +1,53 @@
-<view class="weui-panel weui-panel_access">
-  
-  <view class="weui-panel__bd">
-    <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-        <image class="weui-media-box__thumb" src="{{picUrl}}" />
-      </view>
-      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-        <view class="weui-media-box__title">{{username}}</view>
- <view wx:if="{{username == undefined}}">       
-<button class="weui-btn" type="primary" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">点击授权获取头像及昵称</button>
-</view>
+<view class='page'>
+  <!-- <image class='bgImage' src='../../assets/image/bg.png'></image> -->
+  <view class='content'>
+    <!-- <view  class="weui-panel weui-panel_access"> -->
 
-      </view>
+      <!-- <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" src="{{picUrl}}" />
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">{{username}}</view> -->
+             
+
+          <!-- </view> -->
+        <!-- </view>
+      </view> -->
+    <!-- </view> -->
+     <button class="weui-btn btn_default"  open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" wx:if="{{picUrl == undefined}}">点击授权获取头像及昵称</button>
+    <view class="sendMail">
+      <navigator url="../mailSend/mailSend" open-type="navigate" class="">
+        <image mode='aspectFit' class='sendPic' src='../../assets/image/sendMail.png'></image>
+      </navigator>
+    </view>
+    <view class="recvMail">
+      <navigator url="../mailReceive/mailReceive" open-type="navigate" class="">
+        <image mode='aspectFit' class='recvPic' src='../../assets/image/recvMail.png'></image>
+        <!-- <image style="width: 20px; height: 20px;" mode='scaleToFill' src='{{redDot}}'></image> -->
+      </navigator>
+    </view>
+    
+    <view class="write">
+      <navigator url="../write/write" open-type="navigate" class="">
+        <image mode='aspectFit' class='writePic' src='../../assets/image/write.png'></image>
+      </navigator>
+    </view>
+    <view class="register" hidden='true'>
+      <navigator url="../register/register" open-type="navigate" class="uploader-text">
+        <text>注册</text>
+      </navigator>
+    </view>
+    <view class="editor" hidden='true'>
+      <navigator url="../editor/editor" open-type="navigate" class="uploader-text">
+        <text>编辑器</text>
+      </navigator>
+    </view>
+    <view hidden='true'>
+      <navigator url="../writeConfirm/writeConfirm" open-type="navigate" class="uploader-text">
+        <text>写信确认</text>
+      </navigator>
     </view>
   </view>
-</view>
-<view class="write">
-  <navigator url="../write/write" open-type="navigate" class="uploader-text">
-    <text>写信</text>
-  </navigator>
-</view>
-<view class="receivedMail">
-  <navigator url="../mailReceive/mailReceive" open-type="navigate" class="uploader-text">
-    <text>收件箱</text>
-    <image style="width: 20px; height: 20px;" mode='scaleToFill' src='{{redDot}}'></image>
-  </navigator>
-</view>
-<view class="sendedMail">
-  <navigator url="../mailSend/mailSend" open-type="navigate" class="uploader-text">
-    <text>发件箱</text>
-  </navigator>
-</view>
-<view class="register" hidden='true'>
-  <navigator url="../register/register" open-type="navigate" class="uploader-text">
-    <text>注册</text>
-  </navigator>
-</view>
-<view class="editor" hidden='true'>
-  <navigator url="../editor/editor" open-type="navigate" class="uploader-text">
-    <text>编辑器</text>
-  </navigator>
-</view>
-<view hidden='true'>
-  <navigator  url="../writeConfirm/writeConfirm" open-type="navigate" class="uploader-text">
-    <text>写信确认</text>
-  </navigator>
 </view>

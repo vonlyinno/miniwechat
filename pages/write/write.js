@@ -226,12 +226,14 @@ Page({
     if (this.data.blocks[0].value.length < 1) {
       wx.showToast({
         title: '我们不发空邮件！',
+        icon:'none'
       })
       return;
     }
     if (!this.data.friendName || this.data.friendName.length<1){
       wx.showToast({
         title: '请输入对方昵称！',
+        icon:'none'
       })
       return;
     }

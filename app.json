@@ -1,20 +1,20 @@
 {
-  "pages": [
+  "pages": [    
     "pages/register/register",
     "pages/index/index",
     "pages/write/write",
     "pages/mailList/mailList",
     "pages/mail/mail",
+    "pages/writeConfirm/writeConfirm",    
     "pages/mailState/mailState",
     "pages/mailSend/mailSend",
     "pages/mailReceive/mailReceive",
-    "pages/writeConfirm/writeConfirm" ,
     "pages/editor/editor"
     
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "小程序名字",
+    "navigationBarTitleText": "Y o Y o o",
     "navigationBarBackgroundColor": "#f8f8f8",
     "backgroundColor": "#f8f8f8"
   }
