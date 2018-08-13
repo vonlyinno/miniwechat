@@ -1,4 +1,6 @@
-/* pages/mail/mail.wxss */
+.page{
+  background-image:none;
+}
 .mail_page {
   width: 100%;
   height: 100%;
@@ -117,6 +119,8 @@
 }
 .mail_wrapper{
   min-height: 100%;
+  background-color: whitesmoke;
+
 }
 .btn_back {
   width: 80rpx;
